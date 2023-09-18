@@ -34,8 +34,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
   stt.SpeechToText _speech = stt.SpeechToText();
   bool _isListening = false;
   String lastStatus = '';
-  String _text = 'Press the button and start speaking';
-  double _confidence = 1.0;
+  final String _text = 'Press the button and start speaking';
+  final double _confidence = 1.0;
 
   @override
   void initState() {

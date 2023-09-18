@@ -19,6 +19,7 @@ class CourseScreen extends StatefulWidget {
 class _CourseScreenState extends State<CourseScreen> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
@@ -39,12 +40,12 @@ class _CourseScreenState extends State<CourseScreen> {
                         ),
                       ),
                       Positioned(
-                        left: 0,
+                        left: 10,
                         child: CustomIconButton(
-                          child: const Icon(Icons.arrow_back),
                           height: 35,
                           width: 35,
                           onTap: () => Navigator.pop(context),
+                          child: const Icon(Icons.arrow_back),
                         ),
                       ),
                     ],
@@ -56,13 +57,13 @@ class _CourseScreenState extends State<CourseScreen> {
                 Expanded(
                   child: Stack(
                     children: [
-                      RiveAnimation.asset(
-                          icBg,
+                      const RiveAnimation.asset(
+                        icBg,
                         fit: BoxFit.cover,
                       ),
                       GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: size.width > 700 ? 3 : 2,
                           childAspectRatio: 0.85,
                           // crossAxisSpacing: 20,
                           // mainAxisSpacing: 24,
@@ -128,7 +129,7 @@ class CourseContainer extends StatelessWidget {
               //rive
               if(course.thumbnail.contains("riv"))
                 Align(
-                    alignment: Alignment.topRight,
+                    alignment: Alignment.topCenter,
                     child: SizedBox(
                         width: 150,
                         height: 120,
@@ -176,15 +177,17 @@ class CourseContainer extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Center(
-                child: Text(
-                  course.name,
-                  style: TextStyle(
-                    fontSize: 30
+              Expanded(
+                child: Center(
+                  child: Text(
+                    course.name,
+                    style: const TextStyle(
+                        fontSize: 30
+                    ),
+                    // style: ,
                   ),
-                  // style: ,
                 ),
-              ),
+              )
               // Text(
               //   "${category.noOfCourses.toString()} courses",
               //   style: Theme.of(context).textTheme.bodySmall,
