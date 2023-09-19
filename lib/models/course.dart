@@ -20,162 +20,211 @@ class Lesson {
   });
 }
 
+const path = '/assets/icons'
+
 List<Course> courses = [
   Course(
     name: 'A',
-    thumbnail: "assets/icons/a.riv",
-    // thumbnail: "assets/icons/a.png",
+    thumbnail: '$path/a/a.riv',
+    // thumbnail: '$path/a.png',
     categoryId: 1,
     lessons: [
-      Lesson(thumbnail: "assets/icons/a.riv", word: "Con cá"),
-      Lesson(thumbnail: "assets/icons/a.png", word: "Con cá"),
-      Lesson(thumbnail: "assets/icons/a.riv", word: "Con cá"),
-      Lesson(thumbnail: "assets/icons/a.png", word: "Con cá"),
+      Lesson(thumbnail: '$path/a/a.riv', word: 'Con cá'),
+      Lesson(thumbnail: '$path/a/ao.json', word: 'Cái áo'),
+      Lesson(thumbnail: '$path/a/vang.json', word: 'Màu vàng'),
+      Lesson(thumbnail: '$path/a/chai.json', word: 'Cái chai'),
+    ]
+  ),
+  Course(
+    name: 'Ă',
+    thumbnail: '$path/aw/aw.riv',
+    // thumbnail: '$path/aw.png',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/aw/aw.riv', word: 'Mặt Trời'),
+      Lesson(thumbnail: '$path/aw/tran.png', word: 'Con trăn'),
+      Lesson(thumbnail: '$path/aw/bang.riv', word: 'Tảng băng'),
+      Lesson(thumbnail: '$path/aw/mang.png', word: 'Cây măng'),
+    ]
+  ),
+  Course(
+    name: 'Â',
+    thumbnail: '$path/aa/aa.riv',
+    // thumbnail: '$path/aa.png',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/aa/aa.riv', word: 'Chiếc cân'),
+      Lesson(thumbnail: '$path/aa/chan.riv', word: 'Cái chân'),
+      Lesson(thumbnail: '$path/aa/man.png', word: 'Quả mận'),
+      Lesson(thumbnail: '$path/aa/santruong.riv', word: 'Sân trường'),
+    ]
+  ),
+  Course(
+    name: 'B',
+    // thumbnail: '$path/B.riv',
+    thumbnail: '$path/b/b.riv',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/b/banoi.json', word: 'Bà nội'),
+      Lesson(thumbnail: '$path/b/b.riv', word: 'Con bò'),
+      Lesson(thumbnail: '$path/aw/bang.riv', word: 'Tảng băng'),
+      Lesson(thumbnail: '$path/b/bontam.json', word: 'Bồn tắm'),
+    ]
+  ),
+  Course(
+    name: 'C',
+    thumbnail: '$path/c/c.json',
+    // thumbnail: '$path/c.png',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/c/c.json', word: 'Con cua'),
+      Lesson(thumbnail: '$path/c/cay.json', word: 'Cái cây'),
+      Lesson(thumbnail: '$path/c/chim', word: 'Con chim'),
+      Lesson(thumbnail: '$path/c/chanh.json', word: 'Quả chanh'),
+    ]
+  ),
+  Course(
+    name: 'D',
+    thumbnail: '$path/d/d.png',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/d/d.png', word: 'Con dê'),
+      Lesson(thumbnail: '$path/d/day.png', word: 'Cuộn dây'),
+      Lesson(thumbnail: '$path/d/doanhtrai.png', word: 'Doanh trai'),
+      Lesson(thumbnail: '$path/d/dinhdoclap.jpg', word: 'Dinh Độc Lập'),
+    ]
+  ),
+  Course(
+    name: 'Đ',
+    thumbnail: '$path/dd/dd.png',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/dd/dd.png', word: 'Con đường'),
+      Lesson(thumbnail: '$path/dd/vienda.json', word: 'Viên đá'),
+      Lesson(thumbnail: '$path/dd/dinhvit.png', word: 'Chiếc đinh'),
+      Lesson(thumbnail: '$path/dd/caudo.json', word: 'Câu đố'),
+    ]
+  ),
+  Course(
+    name: 'E',
+    thumbnail: '$path/e/e.json',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/e/e.json', word: 'Xe hơi'),
+      Lesson(thumbnail: '$path/e/tre.json', word: 'Cây tre'),
+      Lesson(thumbnail: '$path/e/kem.json', word: 'Cây kem'),
+      Lesson(thumbnail: '$path/e/nghe.json', word: 'Nghe nhạc'),
+    ]
+  ),
+  Course(
+    name: 'Ê',
+    thumbnail: '$path/ee/ee.png',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/ee/ee.png', word: 'Cây nến'),
+      Lesson(thumbnail: '$path/d/d.png', word: 'Con dê'),
+      Lesson(thumbnail: '$path/ee/demen.jpg', word: 'Dế mèn'),
+      Lesson(thumbnail: '$path/ee/khe.png', word: 'Quả khế'),
     ]
   ),
   // Course(
-  //   name: 'Ă',
-  //   thumbnail: "assets/icons/aw.riv",
-  //   // thumbnail: "assets/icons/aw.png",
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'Â',
-  //   thumbnail: "assets/icons/aa.riv",
-  //   // thumbnail: "assets/icons/aa.png",
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'B',
-  //   // thumbnail: "assets/icons/B.riv",
-  //   thumbnail: "assets/icons/b.png",
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'C',
-  //   // thumbnail: "assets/icons/c.riv",
-  //   thumbnail: "assets/icons/c.json",
-  //   // thumbnail: "assets/icons/c.png",
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'D',
-  //   thumbnail: "assets/icons/d.png",
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'Đ',
-  //   thumbnail: "assets/icons/dd.png",
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'E',
-  //   thumbnail: "assets/icons/e.json",
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'Ê',
-  //   thumbnail: "assets/icons/ee.png",
-  //   categoryId: 1,
-  // ),
-  // Course(
   //   name: 'G',
-  //   thumbnail: "assets/icons/g.json",
+  //   thumbnail: '$path/g.json',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'H',
-  //   thumbnail: "assets/icons/h.json",
+  //   thumbnail: '$path/h.json',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'I',
-  //   thumbnail: "assets/icons/i.json",
+  //   thumbnail: '$path/i.json',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'K',
-  //   thumbnail: "assets/icons/k.json",
+  //   thumbnail: '$path/k.json',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'L',
-  //   thumbnail: "assets/icons/l.png",
+  //   thumbnail: '$path/l.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'M',
-  //   thumbnail: "assets/icons/m.json",
+  //   thumbnail: '$path/m.json',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'N',
-  //   thumbnail: "assets/icons/n.png",
+  //   thumbnail: '$path/n.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'O',
-  //   thumbnail: "assets/icons/o.json",
+  //   thumbnail: '$path/o.json',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'Ô',
-  //   thumbnail: "assets/icons/oo.png",
+  //   thumbnail: '$path/oo.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'Ơ',
-  //   thumbnail: "assets/icons/ow.png",
+  //   thumbnail: '$path/ow.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'P',
-  //   thumbnail: "assets/icons/p.png",
+  //   thumbnail: '$path/p.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'Q',
-  //   thumbnail: "assets/icons/q.png",
+  //   thumbnail: '$path/q.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'R',
-  //   thumbnail: "assets/icons/r.png",
+  //   thumbnail: '$path/r.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'S',
-  //   thumbnail: "assets/icons/s.png",
+  //   thumbnail: '$path/s.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'T',
-  //   thumbnail: "assets/icons/t.png",
+  //   thumbnail: '$path/t.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'U',
-  //   thumbnail: "assets/icons/u.png",
+  //   thumbnail: '$path/u.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'Ư',
-  //   thumbnail: "assets/icons/uw.png",
+  //   thumbnail: '$path/uw.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'V',
-  //   thumbnail: "assets/icons/v.png",
+  //   thumbnail: '$path/v.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'x',
-  //   thumbnail: "assets/icons/x.png",
+  //   thumbnail: '$path/x.png',
   //   categoryId: 1,
   // ),
   // Course(
   //   name: 'Y',
-  //   thumbnail: "assets/icons/y.png",
+  //   thumbnail: '$path/y.png',
   //   categoryId: 1,
   // ),
 ];
@@ -197,45 +246,45 @@ List<Course> courses = [
 //
 // List<Course> courses = [
 //   Course(
-//     author: "DevWheels",
+//     author: 'DevWheels',
 //     completedPercentage: .75,
-//     name: "Flutter Novice to Ninja",
-//     thumbnail: "assets/icons/flutter.jpg",
+//     name: 'Flutter Novice to Ninja',
+//     thumbnail: '$path/flutter.jpg',
 //     categoryId: 1,
 //   ),
 //   Course(
-//     author: "DevWheels",
+//     author: 'DevWheels',
 //     completedPercentage: .60,
-//     name: "React Novice to Ninja",
-//     thumbnail: "assets/icons/react.jpg",
+//     name: 'React Novice to Ninja',
+//     thumbnail: '$path/react.jpg',
 //     categoryId: 1,
 //   ),
 //   Course(
-//     author: "DevWheels",
+//     author: 'DevWheels',
 //     completedPercentage: .75,
-//     name: "Node - The complete guide",
-//     thumbnail: "assets/icons/node.png",
+//     name: 'Node - The complete guide',
+//     thumbnail: '$path/node.png',
 //     categoryId: 1,
 //   ),
 //   Course(
-//     author: "DevWheels",
+//     author: 'DevWheels',
 //     completedPercentage: .75,
-//     name: "Flutter Novice to Ninja",
-//     thumbnail: "assets/icons/flutter.jpg",
+//     name: 'Flutter Novice to Ninja',
+//     thumbnail: '$path/flutter.jpg',
 //     categoryId: 1,
 //   ),
 //   Course(
-//     author: "DevWheels",
+//     author: 'DevWheels',
 //     completedPercentage: .60,
-//     name: "React Novice to Ninja",
-//     thumbnail: "assets/icons/react.jpg",
+//     name: 'React Novice to Ninja',
+//     thumbnail: '$path/react.jpg',
 //     categoryId: 1,
 //   ),
 //   Course(
-//     author: "DevWheels",
+//     author: 'DevWheels',
 //     completedPercentage: .75,
-//     name: "Node - The complete guide",
-//     thumbnail: "assets/icons/node.png",
+//     name: 'Node - The complete guide',
+//     thumbnail: '$path/node.png',
 //     categoryId: 1,
 //   ),
 // ];
