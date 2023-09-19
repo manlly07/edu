@@ -1,3 +1,4 @@
+import 'package:edu/Toast.dart';
 import 'package:edu/constants/color.dart';
 import 'package:edu/constants/icons.dart';
 import 'package:edu/models/course.dart';
@@ -31,12 +32,13 @@ class DetailsScreen extends StatefulWidget {
 class _DetailsScreenState extends State<DetailsScreen> {
   int _selectedTag = 0;
   String text = 'hello';
+  List<String> answers = ['', '', '', ''];
+  int currentIndex = 0;
   stt.SpeechToText _speech = stt.SpeechToText();
   bool _isListening = false;
   String lastStatus = '';
   String _text = 'Press the button and start speaking';
   double _confidence = 1.0;
-
   @override
   void initState() {
     super.initState();
@@ -57,13 +59,17 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   void _onSpeechResult(SpeechRecognitionResult result) {
     setState(() {
-      text = result.recognizedWords;
+      answers[currentIndex] = result.recognizedWords;
     });
     if(!_speech.isListening) {
-      print(text);
+      if (answers[currentIndex].contains(lessons[currentIndex].word.toLowerCase())) {
+        showToastMessage("Chính xãc", true);
+      }else {
+        showToastMessage("Chưa chính xãc", false);
+      }
     }
   }
-  void _listen() async {
+  void _listen(index) async {
 
     if (!_isListening) {
       bool available = await _speech.initialize(
@@ -71,16 +77,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
         onError: (val) => print('onError: $val'),
       );
       if (available) {
-        setState(() => _isListening = true);
+        setState(() => {
+          _isListening = true,
+          currentIndex = index,
+        });
         _speech.listen(
-          // onResult: (val) => setState(() {
-          //   print('val: $val');
-          //   _text = val.recognizedWords;
-          //   print('word: ${val.recognizedWords}');
-          //   if (val.hasConfidenceRating && val.confidence > 0) {
-          //     _confidence = val.confidence;
-          //   }
-          // }),
           onResult: _onSpeechResult,
           listenFor: Duration(seconds: 30),
           pauseFor: Duration(seconds: 3),
@@ -145,10 +146,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       mainAxisSpacing: 24,
                     ),
                     itemBuilder: (context, index) {
-                      return LessonContainer(lesson: lessons[index], text: text, setState: setState, listen: _listen);
+                      return LessonContainer(index: index,lesson: lessons[index], text: answers[index], setState: setState, listen: _listen);
                     },
                     itemCount: lessons.length,
                   ),
+                ),
+                Image.asset(
+                  iA,
+                  height: 200,
                 )
               ],
             ),
@@ -180,17 +185,16 @@ class LessonContainer extends StatelessWidget {
   final String text;
   final setState;
   final listen;
+  final int index;
   const LessonContainer({
     Key? key,
     required this.text,
     required this.setState,
     required this.lesson,
-    required this.listen
+    required this.listen,
+    required this.index,
   }) : super(key: key);
   @override
-
-
-
 
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -205,6 +209,10 @@ class LessonContainer extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              width: 3,
+              color: text != '' ? text.contains(lesson.word.toLowerCase()) ? Colors.greenAccent : Colors.redAccent : Colors.white,
+            ),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(.1),
@@ -302,14 +310,13 @@ class LessonContainer extends StatelessWidget {
                     right: 5,
                     child: InkWell(
                       onTap: () {
-                        listen();
+                        listen(index);
                       },
                       child: Center(
                         child: Icon(Icons.mic),
                       ),
                     )
                   ),
-                  Text(text),
                 ],
               )
             ],

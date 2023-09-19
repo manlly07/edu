@@ -23,7 +23,7 @@ class Lesson {
 List<Course> courses = [
   Course(
     name: 'A',
-    thumbnail: "assets/icons/a.riv",
+    thumbnail: "assets/icons/aw.riv",
     // thumbnail: "assets/icons/a.png",
     categoryId: 1,
     lessons: [

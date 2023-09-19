@@ -3,6 +3,7 @@ import 'package:edu/constants/size.dart';
 import 'package:edu/models/category.dart';
 import 'package:edu/screens/course_screen.dart';
 import 'package:edu/screens/details_screen.dart';
+import 'package:edu/screens/math_screen.dart';
 import 'package:edu/widgets/circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
