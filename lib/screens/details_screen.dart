@@ -22,15 +22,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   late final String title;
   late final List<Lesson> lessons;
+  late final ValueNotifier<int> index;
+
+  int? getLearningProgress() {
+    //TODO: Get Learning Progress
+    return null;
+  }
 
   @override
   void initState() {
     super.initState();
     title = widget.title;
     lessons = widget.lessons;
+    index = ValueNotifier(getLearningProgress() ?? 0);
   }
-
-  ValueNotifier<int> index = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
