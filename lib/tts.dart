@@ -5,8 +5,8 @@ class TextToSpeech {
 
   static initTTS() {
     tts.setLanguage("vi-VN");
-    tts.setPitch(1.1);
-    tts.setSpeechRate(.5);
+    tts.setPitch(1.0);
+    tts.setSpeechRate(.4);
   }
   static speak(String text) async {
     await tts.awaitSpeakCompletion(true);

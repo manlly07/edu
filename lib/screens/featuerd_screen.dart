@@ -4,6 +4,7 @@ import 'package:edu/models/category.dart';
 import 'package:edu/screens/course_screen.dart';
 import 'package:edu/screens/details_screen.dart';
 import 'package:edu/screens/math_screen.dart';
+import 'package:edu/screens/tiengviet_screen.dart';
 import 'package:edu/widgets/circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -100,7 +101,7 @@ class CategoryCard extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const CourseScreen(),
+          builder: (context) => const VietScreen(),
         ),
       ),
       child: Container(
