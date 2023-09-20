@@ -36,6 +36,7 @@ class _FeaturedScreenState extends State<FeaturedScreen> {
 }
 
 class Body extends StatelessWidget {
+
   const Body({Key? key}) : super(key: key);
 
   @override
@@ -72,13 +73,14 @@ class Body extends StatelessWidget {
           ),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 0.8,
+            childAspectRatio: 0.75,
             crossAxisSpacing: 20,
             mainAxisSpacing: 24,
           ),
           itemBuilder: (context, index) {
             return CategoryCard(
               category: categoryList[index],
+              position: index,
             );
           },
           itemCount: categoryList.length,
@@ -88,20 +90,35 @@ class Body extends StatelessWidget {
   }
 }
 
+class WidgetList {
+  static List<Widget> getWidgets() {
+    return [
+      CourseScreen(),
+      VietScreen(),
+      MathScreen(),
+    ];
+  }
+}
 class CategoryCard extends StatelessWidget {
+  List<Widget> getWidgets() {
+    return WidgetList.getWidgets();
+  }
   final Category category;
+  final int position;
   const CategoryCard({
     Key? key,
     required this.category,
+    required this.position,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> widgets = getWidgets();
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const VietScreen(),
+          builder: (context) => widgets[position],
         ),
       ),
       child: Container(

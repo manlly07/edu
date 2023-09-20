@@ -1,5 +1,9 @@
+import 'package:edu/Toast.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'dart:async';
 
+import 'package:avatar_glow/avatar_glow.dart';
+import 'package:edu/constants/color.dart';
 import 'package:edu/constants/icons.dart';
 import 'package:edu/math.dart';
 import 'package:edu/models/Quiz.dart';
@@ -8,6 +12,7 @@ import 'package:edu/tts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
 
 
 class VietScreen extends StatefulWidget {
@@ -19,6 +24,66 @@ class VietScreen extends StatefulWidget {
 
 class _VietScreen extends State<VietScreen> {
   List<MathQuestion> questions = generateRandomMathQuestions(10);
+  // int currentIndex = 0;
+  stt.SpeechToText _speech = stt.SpeechToText();
+  bool _isListening = false;
+  String text = '';
+  @override
+  void initState() {
+    super.initState();
+    _speech = stt.SpeechToText();
+  }
+  void statusListener(String status) {
+    print(status);
+  }
+
+  void _onSpeechResult(SpeechRecognitionResult result) {
+    setState(() {
+      text = result.recognizedWords;
+    });
+    if(!_speech.isListening) {
+      if (text.contains(listquiz[currentQuestionIndex].answer.toLowerCase())) {
+        showToastMessage("Chính xãc", true);
+        setState(() {
+        });
+      }else {
+        showToastMessage("Chưa chính xãc", false);
+      }
+      setState(() {
+        if(currentQuestionIndex < 9) {
+          currentQuestionIndex++;
+          click = false;
+        }else {
+          showResult();
+        }
+      });
+    }
+  }
+  void _listen() async {
+
+    if (!_isListening) {
+      bool available = await _speech.initialize(
+        onStatus: statusListener,
+        onError: (val) => print('onError: $val'),
+      );
+      if (available) {
+        setState(() => {
+          _isListening = true,
+        });
+        _speech.listen(
+          onResult: _onSpeechResult,
+          listenFor: Duration(seconds: 30),
+          pauseFor: Duration(seconds: 3),
+          localeId: "vi_VN",
+          partialResults: true,
+          cancelOnError: true,
+        );
+      }
+    } else {
+      setState(() => _isListening = false);
+      _speech.stop();
+    }
+  }
 
   int currentQuestionIndex = 0;
   bool click = false;
@@ -49,6 +114,20 @@ class _VietScreen extends State<VietScreen> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        // floatingActionButton: AvatarGlow(
+        //   endRadius: 75.0,
+        //   animate: true,
+        //   glowColor: kPrimaryLight,
+        //   repeat: true,
+        //   repeatPauseDuration: Duration(milliseconds: 100),
+        //   showTwoGlows: true,
+        //   child: const CircleAvatar(
+        //     backgroundColor: kPrimaryLight,
+        //     radius: 35,
+        //     child: Icon(Icons.mic, color: Colors.white),
+        //   ),
+        // ),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 8.0),
@@ -108,11 +187,10 @@ class _VietScreen extends State<VietScreen> {
                                 children: [
                                   InkWell(
                                     onTap: () {
-                                      TextToSpeech.speak(listquiz[1].question);
+                                      TextToSpeech.speak(listquiz[currentQuestionIndex].question);
                                     },
                                     child: Icon(Icons.mic),
                                   ),
-                                  // Text(listquiz[0].question),
                                 ],
                               ),
                             ),
@@ -120,7 +198,11 @@ class _VietScreen extends State<VietScreen> {
                           SizedBox(
                             height: 24,
                           ),
-                          _answerList()
+
+                          if (listquiz[currentQuestionIndex].type == 'mcq')
+                            _answerList(),
+                          if (listquiz[currentQuestionIndex].type == 'speech')
+                            _answerSpeech()
                         ],
                       )
                     ],
@@ -206,6 +288,44 @@ class _VietScreen extends State<VietScreen> {
             ),
           ],
         )
+    );
+  }
+
+  _answerSpeech() {
+    return Expanded(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          GestureDetector(
+            onTapUp: (detail) {
+              setState(() {
+                _isListening = false;
+                _listen();
+              });
+            },
+            onTapDown: (detail) {
+              setState(() {
+                _isListening = true;
+                _listen();
+              });
+            },
+            child: AvatarGlow(
+              endRadius: 75.0,
+              animate: true,
+              glowColor: kPrimaryLight,
+              repeat: _isListening,
+              repeatPauseDuration: Duration(milliseconds: 100),
+              showTwoGlows: true,
+              child: const CircleAvatar(
+                backgroundColor: kPrimaryLight,
+                radius: 35,
+                child: Icon(Icons.mic, color: Colors.white),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

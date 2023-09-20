@@ -21,6 +21,7 @@ dependencies:
   flutter_tts: ^3.8.3
   speech_to_text: ^6.3.0
   fluttertoast: ^8.2.2
+  avatar_glow: ^2.0.2
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +35,15 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/icons/a/
+    - assets/icons/aw/
+    - assets/icons/aa/
+    - assets/icons/b/
+    - assets/icons/c/
+    - assets/icons/d/
+    - assets/icons/dd/
+    - assets/icons/e/
+    - assets/icons/ee/
     - assets/images/
 
   fonts:
