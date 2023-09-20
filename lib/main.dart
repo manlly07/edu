@@ -1,4 +1,5 @@
 import 'package:edu/screens/base_screen.dart';
+import 'package:edu/screens/featuerd_screen.dart';
 import 'package:edu/stt.dart';
 import 'package:edu/tts.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const BaseScreen(),
+      home: const FeaturedScreen(),
     );
   }
 }

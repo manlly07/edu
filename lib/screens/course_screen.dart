@@ -1,11 +1,8 @@
-import 'package:edu/constants/color.dart';
 import 'package:edu/constants/icons.dart';
-import 'package:edu/constants/images.dart';
 import 'package:edu/models/course.dart';
 import 'package:edu/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:edu/constants/size.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rive/rive.dart';
 
@@ -59,24 +56,25 @@ class _CourseScreenState extends State<CourseScreen> {
                     children: [
                       const RiveAnimation.asset(
                         icBg,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                       ),
-                      GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: size.width > 700 ? 3 : 2,
-                          childAspectRatio: 0.85,
-                          // crossAxisSpacing: 20,
-                          // mainAxisSpacing: 24,
+                      Flexible(
+                        child: GridView.builder(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: size.width > 700 ? 3 : 2,
+                            childAspectRatio: 0.85,
+                            crossAxisSpacing: 20,
+                            mainAxisSpacing: 24,
+                          ),
+                          itemBuilder: (context, index) {
+                            return CourseContainer(course: courses[index], position: index);
+                          },
+                          itemCount: courses.length,
                         ),
-                        itemBuilder: (context, index) {
-                          return CourseContainer(course: courses[index], position: index);
-                        },
-                        itemCount: courses.length,
                       ),
                     ],
                   )
-                  ),
-                // ),
+                ),
               ],
             ),
           ),
@@ -94,6 +92,7 @@ class CourseContainer extends StatelessWidget {
     required this.course,
     required this.position,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -104,249 +103,102 @@ class CourseContainer extends StatelessWidget {
                     title: course.name,
                     lessons: course.lessons
                   ))),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.transparent,
-        ),
+      child:Container(
         padding: const EdgeInsets.all(10),
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(.1),
-                blurRadius: 4.0,
-                spreadRadius: .05,
-              ), //BoxShadow
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //rive
-              if(course.thumbnail.contains("riv"))
-                Align(
-                    alignment: Alignment.topCenter,
-                    child: SizedBox(
-                        width: 150,
-                        height: 120,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: RiveAnimation.asset(
-                            course.thumbnail,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                    )
-                ),
-              //json lottie
-              if(course.thumbnail.contains("json"))
-                Align(
-                    alignment: Alignment.topRight,
-                    child: SizedBox(
-                        width: 150,
-                        height: 120,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Lottie.asset(
-                              course.thumbnail
-                          ),
-                        )
-                    )
-                ),
-              // image
-              if(course.thumbnail.contains("png"))
-                Align(
-                    alignment: Alignment.topRight,
-                    child: SizedBox(
-                        width: 150,
-                        height: 120,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                              course.thumbnail
-                          ),
-                        )
-                    )
-                ),
-
-
-              const SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                child: Center(
-                  child: Text(
-                    course.name,
-                    style: const TextStyle(
-                        fontSize: 30
-                    ),
-                    // style: ,
-                  ),
-                ),
-              )
-              // Text(
-              //   "${category.noOfCourses.toString()} courses",
-              //   style: Theme.of(context).textTheme.bodySmall,
-              // ),
-            ],
-          ),
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(.1),
+              blurRadius: 4.0,
+              spreadRadius: .05,
+            ), //BoxShadow
+          ],
         ),
-
-        // child: Row(
-        //   // crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        //     ClipRRect(
-        //       borderRadius: BorderRadius.circular(10),
-        //       child: Image.asset(
-        //         course.thumbnail,
-        //         // width: 150,
-        //         height: 150,
-        //       ),
-        //     ),
-        //
-        //     // if (position.isEven)
-        //     //   Expanded(
-        //     //     child: Column(
-        //     //       crossAxisAlignment: CrossAxisAlignment.start,
-        //     //       // children: [
-        //     //       //   Stack(
-        //     //       //     children: [
-        //     //       //       ClipRRect(
-        //     //       //         borderRadius: BorderRadius.circular(10),
-        //     //       //         child: Image.asset(
-        //     //       //           course.thumbnail,
-        //     //       //           height: 100,
-        //     //       //         ),
-        //     //       //       ),
-        //     //       //       Positioned(
-        //     //       //           left: 0,
-        //     //       //           right: 0,
-        //     //       //           top: 0,
-        //     //       //           bottom: 0,
-        //     //       //           child: Align(
-        //     //       //         // alignment: Alignment.center,
-        //     //       //         child: Text(
-        //     //       //           "Hello"
-        //     //       //         ),
-        //     //       //       ))
-        //     //       //     ],
-        //     //       //   ),
-        //     //       //   SizedBox(height: 10)
-        //     //       // ],
-        //     //       // children: [
-        //     //       //   ClipRRect(
-        //     //       //     borderRadius: BorderRadius.circular(10),
-        //     //       //     child: Image.asset(
-        //     //       //       course.thumbnail,
-        //     //       //       // width: 150,
-        //     //       //       height: 150,
-        //     //       //     ),
-        //     //       //   ),
-        //     //       //   // SizedBox(height: 10),
-        //     //       //   // Image.asset(imLeft),
-        //     //       // ],
-        //     //     ),
-        //     //   ),
-        //     // if (!position.isEven)
-        //     //   Expanded(
-        //     //     child: Column(
-        //     //       crossAxisAlignment: CrossAxisAlignment.end,
-        //     //       // children: [
-        //     //       //   Stack(
-        //     //       //     children: [
-        //     //       //       ClipRRect(
-        //     //       //         borderRadius: BorderRadius.circular(10),
-        //     //       //         child: Image.asset(
-        //     //       //           course.thumbnail,
-        //     //       //           height: 100,
-        //     //       //         ),
-        //     //       //       ),
-        //     //       //       Positioned(
-        //     //       //           left: 0,
-        //     //       //           right: 0,
-        //     //       //           top: 0,
-        //     //       //           bottom: 0,
-        //     //       //           child: Align(
-        //     //       //             // alignment: Alignment.center,
-        //     //       //             child: Text(
-        //     //       //                 "Hello"
-        //     //       //             ),
-        //     //       //           ))
-        //     //       //     ],
-        //     //       //   ),
-        //     //       //   SizedBox(height: 10)
-        //     //       // ],
-        //     //       children: [
-        //     //         ClipRRect(
-        //     //           borderRadius: BorderRadius.circular(10),
-        //     //           child: Image.asset(
-        //     //             course.thumbnail,
-        //     //             height: 150,
-        //     //           ),
-        //     //         ),
-        //     //         SizedBox(height: 10)
-        //     //       ],
-        //     //     ),
-        //     //   ),
-        //   ],
-        // ),
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            double fontSize = (constraints.maxHeight + constraints.maxWidth) / 10;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                getThumbNail(course.thumbnail ,constraints),
+                const SizedBox(
+                  height: 10,
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      course.name,
+                      style: TextStyle(
+                          fontSize: fontSize
+                      ),
+                      // style: ,
+                    ),
+                  ),
+                )
+                // Text(
+                //   "${category.noOfCourses.toString()} courses",
+                //   style: Theme.of(context).textTheme.bodySmall,
+                // ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
-  // Widget build(BuildContext context) {
-  //   return GestureDetector(
-  //     onTap: () => Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //             builder: (context) => DetailsScreen(
-  //               title: course.name,
-  //             ))),
-  //     child: Container(
-  //       decoration: BoxDecoration(
-  //         borderRadius: BorderRadius.circular(10),
-  //         color: Colors.white,
-  //       ),
-  //       padding: const EdgeInsets.all(10),
-  //       child: Row(
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: [
-  //           ClipRRect(
-  //             borderRadius: BorderRadius.circular(10),
-  //             child: Image.asset(
-  //               course.thumbnail,
-  //               height: 60,
-  //             ),
-  //           ),
-  //           const SizedBox(
-  //             width: 10,
-  //           ),
-  //           Expanded(
-  //             child: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               children: [
-  //                 Text(course.name),
-  //                 Text(
-  //                   "Author ${course.author}",
-  //                   style: Theme.of(context).textTheme.bodySmall,
-  //                 ),
-  //                 const SizedBox(
-  //                   height: 5,
-  //                 ),
-  //                 LinearProgressIndicator(
-  //                   value: course.completedPercentage,
-  //                   backgroundColor: Colors.black12,
-  //                   color: kPrimaryColor,
-  //                 )
-  //               ],
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+}
+
+Widget getThumbNail(String thumbnail ,BoxConstraints constraints) {
+  if(thumbnail.contains("riv")) {
+    return Align(
+        alignment: Alignment.topCenter,
+        child: SizedBox(
+            width: constraints.maxWidth,
+            height: constraints.maxHeight * 3 / 5,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: RiveAnimation.asset(
+                thumbnail,
+                fit: BoxFit.cover,
+              ),
+            )
+        )
+    );
+  }
+  //json lottie
+  if(thumbnail.contains("json")) {
+    return Align(
+        alignment: Alignment.topRight,
+        child: SizedBox(
+            width: constraints.maxWidth,
+            height: constraints.maxHeight * 3 / 5,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Lottie.asset(
+                  thumbnail
+              ),
+            )
+        )
+    );
+  }
+  // image
+  if(thumbnail.contains("png")) {
+    return Align(
+        alignment: Alignment.topRight,
+        child: SizedBox(
+            width: constraints.maxWidth,
+            height: constraints.maxHeight * 3 / 5,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                  thumbnail
+              ),
+            )
+        )
+    );
+  }
+  return const SizedBox();
 }

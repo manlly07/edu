@@ -1,3 +1,7 @@
+import 'package:edu/widgets/lessons/speak_lesson_widget.dart';
+
+import 'lesson.dart';
+
 class Course {
   String name;
   String thumbnail;
@@ -11,15 +15,6 @@ class Course {
   });
 }
 
-class Lesson {
-  String thumbnail;
-  String word;
-  Lesson({
-    required this.thumbnail,
-    required this.word
-  });
-}
-
 List<Course> courses = [
   Course(
     name: 'A',
@@ -27,10 +22,10 @@ List<Course> courses = [
     // thumbnail: "assets/icons/a.png",
     categoryId: 1,
     lessons: [
-      Lesson(thumbnail: "assets/icons/a.riv", word: "Con cá"),
-      Lesson(thumbnail: "assets/icons/a.png", word: "Con cá"),
-      Lesson(thumbnail: "assets/icons/a.riv", word: "Con cá"),
-      Lesson(thumbnail: "assets/icons/a.png", word: "Con cá"),
+      SpeakingLesson(thumbnail: "assets/icons/a.riv", word: "Con cá"),
+      SpeakingLesson(thumbnail: "assets/icons/a.png", word: "Con cá"),
+      SpeakingLesson(thumbnail: "assets/icons/a.riv", word: "Con cá"),
+      SpeakingLesson(thumbnail: "assets/icons/a.png", word: "Con cá"),
     ]
   ),
   // Course(
