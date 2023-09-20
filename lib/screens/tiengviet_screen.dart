@@ -1,7 +1,6 @@
 import 'package:edu/Toast.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'dart:async';
-
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:edu/constants/color.dart';
 import 'package:edu/constants/icons.dart';
@@ -23,8 +22,9 @@ class VietScreen extends StatefulWidget {
 }
 
 class _VietScreen extends State<VietScreen> {
-  List<MathQuestion> questions = generateRandomMathQuestions(10);
+  // List<MathQuestion> questions = generateRandomMathQuestions(10);
   // int currentIndex = 0;
+  List<Quiz> questions = listquiz;
   stt.SpeechToText _speech = stt.SpeechToText();
   bool _isListening = false;
   String text = '';
@@ -42,7 +42,7 @@ class _VietScreen extends State<VietScreen> {
       text = result.recognizedWords;
     });
     if(!_speech.isListening) {
-      if (text.contains(listquiz[currentQuestionIndex].answer.toLowerCase())) {
+      if (text.contains(questions[currentQuestionIndex].answer.toLowerCase())) {
         showToastMessage("Chính xãc", true);
         setState(() {
         });
@@ -114,20 +114,6 @@ class _VietScreen extends State<VietScreen> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        // floatingActionButton: AvatarGlow(
-        //   endRadius: 75.0,
-        //   animate: true,
-        //   glowColor: kPrimaryLight,
-        //   repeat: true,
-        //   repeatPauseDuration: Duration(milliseconds: 100),
-        //   showTwoGlows: true,
-        //   child: const CircleAvatar(
-        //     backgroundColor: kPrimaryLight,
-        //     radius: 35,
-        //     child: Icon(Icons.mic, color: Colors.white),
-        //   ),
-        // ),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 8.0),
@@ -187,7 +173,7 @@ class _VietScreen extends State<VietScreen> {
                                 children: [
                                   InkWell(
                                     onTap: () {
-                                      TextToSpeech.speak(listquiz[currentQuestionIndex].question);
+                                      TextToSpeech.speak(questions[currentQuestionIndex].question);
                                     },
                                     child: Icon(Icons.mic),
                                   ),
@@ -199,9 +185,9 @@ class _VietScreen extends State<VietScreen> {
                             height: 24,
                           ),
 
-                          if (listquiz[currentQuestionIndex].type == 'mcq')
+                          if (questions[currentQuestionIndex].type == 'mcq')
                             _answerList(),
-                          if (listquiz[currentQuestionIndex].type == 'speech')
+                          if (questions[currentQuestionIndex].type == 'speech')
                             _answerSpeech()
                         ],
                       )
@@ -217,9 +203,11 @@ class _VietScreen extends State<VietScreen> {
   }
 
   _answerList() {
+    var op = List<String>.from(questions[currentQuestionIndex]
+        .options);
+    op.shuffle();
     return Column(
-      children: listquiz[currentQuestionIndex]
-          .options
+      children: op
           .map(
             (e) => _answerButton(e),
       )
@@ -245,7 +233,7 @@ class _VietScreen extends State<VietScreen> {
         ));
   }
   Widget _answerButton(e) {
-    bool isSelected = e == listquiz[currentQuestionIndex].answer;
+    bool isSelected = e == questions[currentQuestionIndex].answer;
     return (
         Wrap(
           spacing: 1,
