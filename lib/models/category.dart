@@ -21,13 +21,13 @@ enum Categories {
   )),
   TAPVIET(Category(
     id: 2,
-    name: 'Tập Viết',
+    name: 'Kiểm tra Tiếng Việt',
     noOfCourses: 20,
     thumbnail: 'assets/icons/accounting.jpg',
   )),
   TOAN(Category(
     id: 3,
-    name: 'Toán',
+    name: 'Kiểm tra Toán',
     noOfCourses: 16,
     thumbnail: 'assets/icons/photography.jpg',
   ));
