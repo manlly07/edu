@@ -270,7 +270,7 @@ class LessonContainer extends StatelessWidget {
                             )
                         ),
                       // image
-                      if(lesson.thumbnail.contains("png"))
+                      if(lesson.thumbnail.contains("png") || lesson.thumbnail.contains("jpg"))
                         Align(
                             alignment: Alignment.topRight,
                             child: SizedBox(

@@ -78,7 +78,7 @@ List<Course> courses = [
     lessons: [
       Lesson(thumbnail: '$path/c/c.json', word: 'Con cua'),
       Lesson(thumbnail: '$path/c/cay.json', word: 'Cái cây'),
-      Lesson(thumbnail: '$path/c/chim', word: 'Con chim'),
+      Lesson(thumbnail: '$path/c/chim.json', word: 'Con chim'),
       Lesson(thumbnail: '$path/c/chanh.json', word: 'Quả chanh'),
     ]
   ),
