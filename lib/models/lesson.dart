@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:edu/widgets/lessons/speak_lesson_widget.dart';
+import 'package:flutter/material.dart';
 
 import '../widgets/lessons/lesson_widget.dart';
 List<int> a = [1,2];
@@ -27,11 +28,11 @@ enum LessonType {
   const LessonType({required this.attribute});
 }
 
-typedef Provider = LessonWidget Function(Lesson lesson);
+typedef Provider = LessonWidget Function(Lesson lesson, ValueNotifier<bool> isComplete);
 
 class LessonProvider{
-  static Provider SPEAKING = ((Lesson lesson) {
-    if(lesson.type == LessonType.SPEAKING) return SpeakLessonWidget(lesson: lesson as SpeakingLesson);
+  static Provider SPEAKING = ((Lesson lesson, ValueNotifier<bool> isComplete) {
+    if(lesson.type == LessonType.SPEAKING) return SpeakLessonWidget(lesson: lesson as SpeakingLesson, isComplete: isComplete);
     throw Exception("Improper Lesson input for this Provider");
   });
 

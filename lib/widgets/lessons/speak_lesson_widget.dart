@@ -1,5 +1,6 @@
 import 'package:edu/constants/color.dart';
 import 'package:edu/models/lesson.dart';
+import 'package:edu/stt.dart';
 import 'package:edu/widgets/lessons/lesson_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -11,7 +12,8 @@ import '../../screens/course_screen.dart';
 class SpeakLessonWidget extends LessonWidget {
   final SpeakingLesson lesson;
 
-  const SpeakLessonWidget({Key? key, required this.lesson}) : super(key: key);
+  const SpeakLessonWidget({Key? key, required this.lesson, required ValueNotifier<bool> isComplete}) :
+        super(key: key, isComplete: isComplete);
 
   @override
   _SpeakLessonWidgetState createState() => _SpeakLessonWidgetState();
@@ -20,7 +22,6 @@ class SpeakLessonWidget extends LessonWidget {
 class _SpeakLessonWidgetState extends State<SpeakLessonWidget>
     with SingleTickerProviderStateMixin {
   late final SpeakingLesson lesson;
-  late final stt.SpeechToText _speech;
 
   late final AnimationController _controller;
 
@@ -39,22 +40,33 @@ class _SpeakLessonWidgetState extends State<SpeakLessonWidget>
         _controller.repeat(reverse: true);
       } else {
         _controller.reset();
+        checkCorrectAnswer();
       }
     });
     lesson = widget.lesson;
-    _speech = stt.SpeechToText();
+    STT.addListener(_statusListener);
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    STT.removeListener(_statusListener);
     super.dispose();
   }
 
+  void checkCorrectAnswer() {
+    var s1 = text.value.toLowerCase();
+    var s2 = lesson.word.toLowerCase();
+    print("comparing");
+    if(s1 == s2) {
+      print("$s1 equal $s2");
+      widget.setCompleted();
+    }
+  }
+
   void _statusListener(String status) {
-    if(status == "notListening" || status == "done") {
+    if(status == "notListening") {
       _isListening.value = false;
-      //print(status);
     }
   }
 
@@ -64,17 +76,12 @@ class _SpeakLessonWidgetState extends State<SpeakLessonWidget>
 
   void _listen() async {
     if (!_isListening.value) {
-      bool available = await _speech.initialize(
-        onStatus: _statusListener,
-        onError: (val) => print('onError: $val'),
-        finalTimeout: const Duration(hours: 1)
-      );
-      if (available) {
+      if (STT.isAvailable) {
         _isListening.value = true;
-        _speech.listen(
+        STT.speech.listen(
           onResult: _onSpeechResult,
           listenFor: const Duration(seconds: 30),
-          pauseFor: const Duration(hours: 1),
+          pauseFor: const Duration(seconds: 3),
           localeId: "vi_VN",
           partialResults: true,
           cancelOnError: true,
@@ -82,7 +89,7 @@ class _SpeakLessonWidgetState extends State<SpeakLessonWidget>
       }
     } else {
       _isListening.value = false;
-      _speech.stop();
+      STT.speech.stop();
     }
   }
 

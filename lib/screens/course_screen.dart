@@ -7,13 +7,18 @@ import 'package:lottie/lottie.dart';
 import 'package:rive/rive.dart';
 
 class CourseScreen extends StatefulWidget {
-  const CourseScreen({Key? key}) : super(key: key);
+  final List<Course> courses;
+
+  const CourseScreen({Key? key, required this.courses}) : super(key: key);
 
   @override
   _CourseScreenState createState() => _CourseScreenState();
 }
 
 class _CourseScreenState extends State<CourseScreen> {
+
+  List<Course> get courses => widget.courses;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -58,19 +63,17 @@ class _CourseScreenState extends State<CourseScreen> {
                         icBg,
                         fit: BoxFit.fill,
                       ),
-                      Flexible(
-                        child: GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: size.width > 700 ? 3 : 2,
-                            childAspectRatio: 0.85,
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 24,
-                          ),
-                          itemBuilder: (context, index) {
-                            return CourseContainer(course: courses[index], position: index);
-                          },
-                          itemCount: courses.length,
+                      GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: size.width > 700 ? 3 : 2,
+                          childAspectRatio: 0.85,
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 24,
                         ),
+                        itemBuilder: (context, index) {
+                          return CourseContainer(course: courses[index], position: index);
+                        },
+                        itemCount: courses.length,
                       ),
                     ],
                   )

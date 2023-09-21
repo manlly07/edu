@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:edu/constants/color.dart';
 import 'package:edu/models/category.dart';
-import 'package:edu/screens/course_screen.dart';
+import 'package:edu/screens/class_chossing_widget.dart';
 import 'package:edu/widgets/circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -88,10 +88,10 @@ class Body extends StatelessWidget {
             ),
             itemBuilder: (context, index) {
               return CategoryCard(
-                category: categoryList[index],
+                category: Categories.values[index].category,
               );
             },
-            itemCount: categoryList.length,
+            itemCount: Categories.values.length,
           ),
         )
       ],
@@ -112,7 +112,7 @@ class CategoryCard extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const CourseScreen(),
+          builder: (context) => ClassChoosingWidget(category: category,),
         ),
       ),
       child: Container(

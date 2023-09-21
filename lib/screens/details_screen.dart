@@ -23,6 +23,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   late final String title;
   late final List<Lesson> lessons;
   late final ValueNotifier<int> index;
+  late final ValueNotifier<bool> _isComplete;
 
   int? getLearningProgress() {
     //TODO: Get Learning Progress
@@ -34,7 +35,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
     super.initState();
     title = widget.title;
     lessons = widget.lessons;
+    _isComplete = ValueNotifier(false);
     index = ValueNotifier(getLearningProgress() ?? 0);
+    index.addListener(() {
+      _isComplete.value = false;
+    });
   }
 
   @override
@@ -90,6 +95,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               key: Key(value.toString()),
                               lesson: lessons[value],
                               setState: setState,
+                              isComplete: _isComplete,
                           ),
                         );
                       },
@@ -129,7 +135,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
       Text("${i+1}/${lessons.length}", style: Theme.of(context).textTheme.labelSmall,),
 
       if(i < lessons.length-1)
-        CustomIconButton(height: size.height / 15, width: size.height / 15, onTap: () => index.value = i + 1, child: const Icon(Icons.arrow_forward)),
+        ValueListenableBuilder(
+          valueListenable: _isComplete,
+          builder: (BuildContext context, bool value, Widget? child) {
+            return CustomIconButton(
+              height: size.height / 15,
+              width: size.height / 15,
+              onTap: () => index.value = i + 1,
+              disable: !_isComplete.value,
+              child: const Icon(Icons.arrow_forward),
+            );
+          },
+        ),
       if(i == lessons.length-1)
         SizedBox(height: size.height / 15, width: size.height / 15),
     ];
@@ -141,10 +158,12 @@ typedef SetState = void Function(void Function() callback);
 class LessonContainer extends StatelessWidget {
   final Lesson lesson;
   final SetState setState;
+  final ValueNotifier<bool> isComplete;
   const LessonContainer({
     Key? key,
     required this.setState,
     required this.lesson,
+    required this.isComplete
   }) : super(key: key);
   @override
 
@@ -167,7 +186,7 @@ class LessonContainer extends StatelessWidget {
             ), //BoxShadow
           ],
         ),
-        child: LessonProvider.getProvider(lesson.type)(lesson),
+        child: LessonProvider.getProvider(lesson.type)(lesson, isComplete),
       ),
     );
   }
@@ -324,6 +343,7 @@ class CustomIconButton extends StatelessWidget {
   final double width;
   final Color? color;
   final VoidCallback onTap;
+  final bool disable;
 
   const CustomIconButton({
     Key? key,
@@ -332,28 +352,32 @@ class CustomIconButton extends StatelessWidget {
     required this.width,
     this.color = Colors.white,
     required this.onTap,
+    this.disable = false
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(.1),
-            blurRadius: 2.0,
-            spreadRadius: .05,
-          ), //BoxShadow
-        ],
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: onTap,
-        child: Center(child: child),
+    return IgnorePointer(
+      ignoring: disable,
+      child: Ink(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          color: disable ? Colors.grey : color,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(.1),
+              blurRadius: 2.0,
+              spreadRadius: .05,
+            ), //BoxShadow
+          ],
+        ),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: onTap,
+          child: Center(child: child),
+        ),
       ),
     );
   }
