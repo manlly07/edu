@@ -216,3 +216,11 @@ class Course {
     //   categoryId: 1,
     // ),
   ];
+
+  static List<Course> getCourseOf(Category category, Class clss) {
+    List<Course> coursesRes = List.of(courses);
+    coursesRes.retainWhere((element) => element.category == category && element.lop == clss);
+    return coursesRes;
+  }
+}
+
