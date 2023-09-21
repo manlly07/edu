@@ -127,41 +127,83 @@ List<Course> courses = [
       Lesson(thumbnail: '$path/ee/khe.png', word: 'Quả khế'),
     ]
   ),
-  // Course(
-  //   name: 'G',
-  //   thumbnail: '$path/g.json',
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'H',
-  //   thumbnail: '$path/h.json',
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'I',
-  //   thumbnail: '$path/i.json',
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'K',
-  //   thumbnail: '$path/k.json',
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'L',
-  //   thumbnail: '$path/l.png',
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'M',
-  //   thumbnail: '$path/m.json',
-  //   categoryId: 1,
-  // ),
-  // Course(
-  //   name: 'N',
-  //   thumbnail: '$path/n.png',
-  //   categoryId: 1,
-  // ),
+  Course(
+    name: 'G',
+    thumbnail: '$path/g/g.json', 
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/g/g.json', word: 'Con gà'),
+      Lesson(thumbnail: '$path/g/gung.png', word: 'Củ gừng'),
+      Lesson(thumbnail: '$path/g/giuong.json', word: 'Chiếc giường'),
+      Lesson(thumbnail: '$path/g/ganket.json', word: 'Gắn kết'),
+    ]
+  ),
+  Course(
+    name: 'H',
+    thumbnail: '$path/h/h.json',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/h/h.json', word: 'Bông hoa'),
+      Lesson(thumbnail: '$path/h/he.json', word: 'Mùa hè'),
+      Lesson(thumbnail: '$path/h/hat.json', word: 'Ca hát'),
+      Lesson(thumbnail: '$path/h/anhhung.json', word: 'Anh hùng'),
+    ]
+  ),
+  Course(
+    name: 'I',
+    thumbnail: '$path/i/i.json',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/i/i.json', word: 'Củ bí'),
+      Lesson(thumbnail: '$path/c/chim', word: 'Con chim'),
+      Lesson(thumbnail: '$path/i/phim.json', word: 'Phim ảnh'),
+      Lesson(thumbnail: '$path/i/ghi.json', word: 'Ghi chép'),
+    ]
+  ),
+  Course(
+    name: 'K',
+    thumbnail: '$path/k/k.json',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/k/k.json', word: 'Chiếc kính'),
+      Lesson(thumbnail: '$path/e/kem.json', word: 'Cây kem'),
+      Lesson(thumbnail: '$path/k/kien.json', word: 'Con kiến'),
+      Lesson(thumbnail: '$path/k/kiem.json', word: 'Thanh kiếm'),
+    ]
+  ),
+  Course(
+    name: 'L',
+    thumbnail: '$path/l/l.png',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/l/l.png', word: 'Con lạc đà'),
+      Lesson(thumbnail: '$path/l/denlong.json', word: 'Đèn lồng'),
+      Lesson(thumbnail: '$path/l/conluoi.json', word: 'Con lười'),
+      Lesson(thumbnail: '$path/l/losuoi.png', word: 'Lò sưởi'),
+    ]
+  ),
+  Course(
+    name: 'M',
+    thumbnail: '$path/m/me.json',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/m/me.json', word: 'Mẹ'),
+      Lesson(thumbnail: '$path/m/m.json', word: 'Con mèo'),
+      Lesson(thumbnail: '$path/aw/mang.png', word: 'Cây măng'),
+      Lesson(thumbnail: '$path/m/mua.json', word: 'Cơn mưa'),
+    ]
+  ),
+  Course(
+    name: 'N',
+    thumbnail: '$path/n/n.png',
+    categoryId: 1,
+    lessons: [
+      Lesson(thumbnail: '$path/n/n.png', word: 'Chiếc nơ'),
+      Lesson(thumbnail: '$path/n/nieucom.png', word: 'Niêu cơm'),
+      Lesson(thumbnail: '$path/n/bepnuong', word: 'Bếp nướng'),
+      Lesson(thumbnail: '$path/n/cayneu.jpg', word: 'Cây nêu'),
+    ]
+  ),
   // Course(
   //   name: 'O',
   //   thumbnail: '$path/o.json',
