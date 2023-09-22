@@ -1,5 +1,7 @@
 import 'package:edu/constants/color.dart';
+import 'package:edu/models/Quiz.dart';
 import 'package:edu/models/lesson.dart';
+import 'package:edu/widgets/lessons/quiz_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -128,7 +130,19 @@ class _DetailsScreenState extends State<DetailsScreen> {
     var i = index.value;
     return <Widget>[
       if(i > 0)
-        CustomIconButton(height: size.height / 15, width: size.height / 15, onTap: () => index.value = i - 1, child: const Icon(Icons.arrow_back)),
+        ValueListenableBuilder(
+          valueListenable: _isComplete,
+          builder: (BuildContext context, bool value, Widget? child) {
+            return CustomIconButton(
+                height: size.height / 15,
+                width: size.height / 15,
+                onTap: () => index.value = i - 1,
+                disable: lessons[index.value] is Quiz || lessons[index.value] is QuizResult,
+                child: const Icon(Icons.arrow_back)
+            );
+          },
+        ),
+
       if(i == 0)
         SizedBox(height: size.height / 15, width: size.height / 15),
 

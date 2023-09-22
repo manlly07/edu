@@ -1,4 +1,7 @@
+import 'package:edu/models/Quiz.dart';
 import 'package:edu/models/category.dart';
+import 'package:edu/models/math.dart';
+import 'package:edu/widgets/lessons/quiz_widget.dart';
 import 'package:edu/widgets/lessons/speak_lesson_widget.dart';
 
 import 'lesson.dart';
@@ -46,30 +49,46 @@ class Course {
         lop: Class.MOT,
         category: Categories.TIENGVIET.category,
         name: 'A',
-        thumbnail: "assets/icons/a.riv",
+        thumbnail: "assets/icons/a/a.riv",
         // thumbnail: "assets/icons/a.png",
         categoryId : 1,
         lessons: [
-          SpeakingLesson(thumbnail: "assets/icons/a.riv", word: "Con cá"),
-          SpeakingLesson(thumbnail: "assets/icons/a.png", word: "Con cá"),
-          SpeakingLesson(thumbnail: "assets/icons/a.riv", word: "Con cá"),
-          SpeakingLesson(thumbnail: "assets/icons/a.png", word: "Con cá"),
+          SpeakingLesson(thumbnail: "assets/icons/a/a.riv", word: "Con cá"),
+          SpeakingLesson(thumbnail: "assets/icons/a/a.riv", word: "Con cá"),
         ]
     ),
     Course(
         lop: Class.HAI,
         category: Categories.TAPVIET.category,
         name: 'A',
-        thumbnail: "assets/icons/a.riv",
+        thumbnail: "assets/icons/a/a.riv",
         // thumbnail: "assets/icons/a.png",
-        categoryId: 1,
+        categoryId: 2,
         lessons: [
-          SpeakingLesson(thumbnail: "assets/icons/a.riv", word: "Con cá"),
-          SpeakingLesson(thumbnail: "assets/icons/a.png", word: "Con cá"),
-          SpeakingLesson(thumbnail: "assets/icons/a.riv", word: "Con cá"),
-          SpeakingLesson(thumbnail: "assets/icons/a.png", word: "Con cá"),
+          SpeakingLesson(thumbnail: "assets/icons/a/a.riv", word: "Con cá"),
+          SpeakingLesson(thumbnail: "assets/icons/a/a.riv", word: "Con cá"),
         ]
     ),
+    Course(
+        lop: Class.MOT,
+        category: Categories.TIENGVIET.category,
+        name: "Kiểm tra",
+        thumbnail: "assets/icons/a/a.riv",
+        categoryId: 3,
+        lessons: listquiz
+    ),
+    Course(
+        lop: Class.MOT,
+        category: Categories.TOAN.category,
+        name: "Kiểm tra",
+        thumbnail: "assets/icons/a/a.riv",
+        categoryId: 4,
+        lessons: [
+          QuizAttempt(),
+          ...generateRandomMathQuestions(10),
+          QuizResult()
+        ]
+    )
     // Course(
     //   name: 'Ă',
     //   thumbnail: "assets/icons/aw.riv",

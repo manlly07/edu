@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  TextToSpeech.initTTS();
+  TTS.initTTS();
   STT.initSTT();
 
   runApp(const MyApp());

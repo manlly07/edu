@@ -1,6 +1,6 @@
 import 'package:flutter_tts/flutter_tts.dart';
 
-class TextToSpeech {
+class TTS {
   static FlutterTts tts = FlutterTts();
 
   static initTTS() {

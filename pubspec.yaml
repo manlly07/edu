@@ -45,6 +45,7 @@ flutter:
     - assets/icons/e/
     - assets/icons/ee/
     - assets/images/
+    - assets/icons/greentick.json
 
   fonts:
     - family: Poppins

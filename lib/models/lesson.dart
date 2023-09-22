@@ -1,5 +1,9 @@
 import 'dart:collection';
 
+import 'package:edu/models/Quiz.dart';
+import 'package:edu/models/math.dart';
+import 'package:edu/widgets/lessons/math_quiz_widget.dart';
+import 'package:edu/widgets/lessons/quiz_widget.dart';
 import 'package:edu/widgets/lessons/speak_lesson_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +26,20 @@ enum LessonType {
   WRITING(attribute: [
     "word",
     "thumbnail"
-  ]);
+  ]),
+  QUIZ(attribute: [
+    "question",
+    "type",
+    "options",
+    "answer"
+  ]),
+  MATH_QUIZ(attribute: [
+    "question",
+    "options",
+    "answer"
+  ]),
+  QUIZ_ATTEMPT(attribute: []),
+  QUIZ_RESULT(attribute: []);
 
   final List<String> attribute;
   const LessonType({required this.attribute});
@@ -36,10 +53,38 @@ class LessonProvider{
     throw Exception("Improper Lesson input for this Provider");
   });
 
+  static Provider QUIZ = ((Lesson lesson, ValueNotifier<bool> isComplete) {
+    if(lesson.type == LessonType.QUIZ) return QuizWidget(isComplete: isComplete, quiz: lesson as Quiz);
+    throw Exception("Improper Lesson input for this Provider");
+  });
+
+  static Provider MATH_QUIZ = ((Lesson lesson, ValueNotifier<bool> isComplete) {
+    if(lesson.type == LessonType.MATH_QUIZ) return MathQuizWidget(isComplete: isComplete, mathQuestion: lesson as MathQuestion);
+    throw Exception("Improper Lesson input for this Provider");
+  });
+
+  static Provider QUIZ_ATTEMPT = ((Lesson lesson, ValueNotifier<bool> isComplete) {
+    if(lesson.type == LessonType.QUIZ_ATTEMPT) return QuizAttempWidget(isComplete: isComplete, attempt: lesson as QuizAttempt);
+    throw Exception("Improper Lesson input for this Provider");
+  });
+
+  static Provider QUIZ_RESULT = ((Lesson lesson, ValueNotifier<bool> isComplete) {
+    if(lesson.type == LessonType.QUIZ_RESULT) return QuizResultWidget(isComplete: isComplete, result: lesson as QuizResult);
+    throw Exception("Improper Lesson input for this Provider");
+  });
+
   static Provider getProvider(LessonType type) {
     switch(type) {
       case LessonType.SPEAKING:
         return SPEAKING;
+      case LessonType.QUIZ:
+        return QUIZ;
+      case LessonType.MATH_QUIZ:
+        return MATH_QUIZ;
+      case LessonType.QUIZ_ATTEMPT:
+        return QUIZ_ATTEMPT;
+      case LessonType.QUIZ_RESULT:
+        return QUIZ_RESULT;
       default:
         throw Exception("Unknown type: $type");
     }

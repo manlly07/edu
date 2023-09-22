@@ -1,18 +1,32 @@
-class Quiz {
-  String question;
-  String type;
-  String answer;
-  List<String> options = ['', '', '', ''];
+import 'package:edu/models/category.dart';
+import 'package:edu/models/course.dart';
+import 'package:edu/models/lesson.dart';
+import 'package:edu/widgets/lessons/quiz_widget.dart';
 
+class Quiz extends Lesson {
   Quiz({
-    required this.question,
-    required this.type,
-    required this.options,
-    required this.answer,
-  });
+    required String question,
+    required String type,
+    required String answer,
+    required List<String> options,
+  }): super(
+      type: LessonType.QUIZ,
+    attribute: {
+        "question" : question,
+        "type" : type,
+        "options" : options,
+        "answer" : answer
+    }
+  );
+
+  String get question => getAttribute("question");
+  String get quizType => getAttribute("type");
+  String get answer => getAttribute("answer");
+  List<String> get options => getAttribute("options");
 }
 
-List<Quiz> listquiz = [
+List<Lesson> listquiz = [
+  QuizAttempt(),
   Quiz(
     question: 'Hãy tìm chữ a trong các đáp án dưới đây',
     type: 'mcq',
@@ -73,4 +87,5 @@ List<Quiz> listquiz = [
       options: [''],
       answer: 'cờ a ca sắc cá'
   ),
+  QuizResult()
 ];

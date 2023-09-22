@@ -23,7 +23,7 @@ class _ClassChossingWidgetState extends State<ClassChoosingWidget> {
 
   void onPressed(Class lop) {
     List<Course> courses = getCourses(lop);
-    Navigator.push(this.context, MaterialPageRoute(
+    Navigator.push(context, MaterialPageRoute(
     builder: (context) => CourseScreen(courses: courses),
     ));
   }
@@ -90,17 +90,25 @@ class LopWidget extends StatelessWidget {
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           double size = min(constraints.maxWidth ,constraints.maxHeight)/2;
-          return ElevatedButton(
-            onPressed: _onPressed,
-            style: ElevatedButton.styleFrom(
-              fixedSize: Size.square(size),
-                shape: CircleBorder(
-                  side: BorderSide(color: Colors.green, width: size),
+          return GestureDetector(
+            onTap: _onPressed,
+            child: Container(
+              width: size,
+              height: size,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  // BorderSide(color: Colors.green, width: size)
+                  color: Colors.green,
+                  width: size/20
                 )
-            ),
-            child: Text(lop.toString(),
-              style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                fontSize: size / 5
+              ),
+              child: Center(
+                child: Text(lop.toString(),
+                  style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                      fontSize: size / 5
+                  ),
+                ),
               ),
             ),
           );

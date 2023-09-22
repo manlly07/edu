@@ -57,7 +57,7 @@ class _SpeakLessonWidgetState extends State<SpeakLessonWidget>
   void checkCorrectAnswer() {
     var s1 = text.value.toLowerCase();
     var s2 = lesson.word.toLowerCase();
-    print("comparing");
+    print("comparing $s1 and $s2");
     if(s1 == s2) {
       print("$s1 equal $s2");
       widget.setCompleted();
