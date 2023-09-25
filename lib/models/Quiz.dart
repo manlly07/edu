@@ -10,7 +10,7 @@ class Quiz extends Lesson {
     required String answer,
     required List<String> options,
   }): super(
-      type: LessonType.QUIZ,
+      type: LessonType.VIET_QUIZ,
     attribute: {
         "question" : question,
         "type" : type,
