@@ -20,3 +20,4 @@ const iFish = '$_path/a.riv';
 const icBgMath = '$_path/bgmath.json';
 const icBgMath2 = '$_path/bgmath2.json';
 const iA = '$_path/a_word.png';
+const bgHome = '$_path/bg-home.png';

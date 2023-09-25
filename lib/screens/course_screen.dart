@@ -191,7 +191,7 @@ Widget getThumbNail(String thumbnail ,BoxConstraints constraints, String text) {
       );
     }
     // image
-    if (thumbnail.contains("png")) {
+    if (thumbnail.contains("png") || thumbnail.contains("jpg")) {
       return Align(
           alignment: Alignment.topRight,
           child: SizedBox(
@@ -251,7 +251,7 @@ Widget getThumbNail(String thumbnail ,BoxConstraints constraints, String text) {
       );
     }
     // image
-    if (thumbnail.contains("png")) {
+    if (thumbnail.contains("png") || thumbnail.contains("jpg")) {
     return Align(
         alignment: Alignment.topRight,
         child: SizedBox(

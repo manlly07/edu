@@ -71,7 +71,7 @@ class LessonProvider{
   });
 
   static Provider VIET_QUIZ = ((Lesson lesson, ValueNotifier<bool> isComplete) {
-    if(lesson.type == LessonType.VIET_QUIZ) return VietQuizWidget(isComplete: isComplete, vietQuestion: lesson as VietQuestion);
+    if(lesson.type == LessonType.VIET_QUIZ) return VietQuizWidget(isComplete: isComplete, vietQuestion: lesson);
     throw Exception("Improper Lesson input for this Provider");
   });
 

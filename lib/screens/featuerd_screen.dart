@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:edu/constants/color.dart';
+import 'package:edu/constants/icons.dart';
 import 'package:edu/models/category.dart';
 import 'package:edu/screens/class_chossing_widget.dart';
 import 'package:edu/widgets/circle_button.dart';
@@ -42,59 +43,67 @@ class Body extends StatelessWidget {
     Size size = MediaQuery.sizeOf(context);
     var ecSize = size.width / 18;
     var saSize = size.width / 20;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+    return Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Explore Categories",
-                style: Theme.of(context).textTheme.bodyLarge!
-                    .copyWith(fontSize: ecSize > 25 ? 25 : ecSize),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  "See All",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(
-                    color: kPrimaryColor,
-                    fontSize: saSize > 20 ? 20 : saSize
-                  ),
-                ),
-              )
-            ],
-          ),
+        Image.asset(
+          bgHome,
+          fit: BoxFit.fitHeight,
         ),
-        Flexible(
-          child: GridView.builder(
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 8,
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Explore Categories",
+                    style: Theme.of(context).textTheme.bodyLarge!
+                        .copyWith(fontSize: ecSize > 25 ? 25 : ecSize),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "See All",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(
+                          color: kPrimaryColor,
+                          fontSize: saSize > 20 ? 20 : saSize
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: (size.width > 700 ? 3 : 2),
-              childAspectRatio: 0.8,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 24,
-            ),
-            itemBuilder: (context, index) {
-              return CategoryCard(
-                category: Categories.values[index].category,
-              );
-            },
-            itemCount: Categories.values.length,
-          ),
-        )
-      ],
+            Flexible(
+              child: GridView.builder(
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 8,
+                ),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: (size.width > 700 ? 3 : 2),
+                  childAspectRatio: 0.8,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 24,
+                ),
+                itemBuilder: (context, index) {
+                  return CategoryCard(
+                    category: Categories.values[index].category,
+                  );
+                },
+                itemCount: Categories.values.length,
+              ),
+            )
+          ],
+        ),
+      ]
     );
   }
 }

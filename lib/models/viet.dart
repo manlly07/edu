@@ -37,7 +37,7 @@ VietQuestion generateRandomVietQuestion() {
   VietQuestion question = VietQuestion(
       question: listquiz[randomNumber].getAttribute("question"),
       answer: listquiz[randomNumber].getAttribute("answer"),
-      options: listquiz[randomNumber].getAttribute("option"),
+      options: listquiz[randomNumber].getAttribute("options"),
       type: listquiz[randomNumber].getAttribute("type")
   );
   questions = question;

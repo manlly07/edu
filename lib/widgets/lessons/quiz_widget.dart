@@ -14,7 +14,7 @@ import 'package:lottie/lottie.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 
 class VietQuizWidget extends LessonWidget {
-  final VietQuestion vietQuestion;
+  final Lesson vietQuestion;
 
   const VietQuizWidget({Key? key, required ValueNotifier<bool> isComplete, required this.vietQuestion}) :
         super(key: key, isComplete: isComplete);
@@ -26,7 +26,7 @@ class VietQuizWidget extends LessonWidget {
 class _VietQuizWidgetState extends State<VietQuizWidget> {
   // List<MathQuestion> questions = generateRandomMathQuestions(10);
   // int currentIndex = 0;
-  VietQuestion get question => widget.vietQuestion;
+  Lesson get question => widget.vietQuestion;
   bool _isListening = false;
   String text = '';
 
@@ -35,7 +35,7 @@ class _VietQuizWidgetState extends State<VietQuizWidget> {
   @override
   void initState() {
     super.initState();
-    op = List<String>.from(question.options);
+    op = List<String>.from(question.getAttribute("options"));
     op.shuffle();
     QuizAttempt.addNewQuiz();
     STT.addListener(statusListener);
@@ -50,7 +50,7 @@ class _VietQuizWidgetState extends State<VietQuizWidget> {
   void statusListener(String status) {
     if(status == "done") {
       bool result;
-      if (text.contains(question.answer.toLowerCase())) {
+      if (text.contains(question.getAttribute("answer").toLowerCase())) {
         showToastMessage("Chính xãc", true);
         result = true;
       }else {
@@ -90,7 +90,7 @@ class _VietQuizWidgetState extends State<VietQuizWidget> {
     Timer(const Duration(milliseconds: 500), () async {
       // Thực hiện các hành động sau khi độ trễ
       bool result;
-      if(choice == question.answer) {
+      if(choice == question.getAttribute("answer")) {
         showToastMessage("Chính xãc", true);
         result = true;
       } else {
@@ -117,7 +117,7 @@ class _VietQuizWidgetState extends State<VietQuizWidget> {
               child: ValueListenableBuilder<bool>(
                 valueListenable: click,
                 builder: (BuildContext context, bool value, Widget? child) {
-                  bool isSelected = e == question.answer;
+                  bool isSelected = e == question.getAttribute("answer");
                   Color color = value ? isSelected ? Colors.greenAccent : Colors.redAccent : Colors.white;
                   return Card(
                     shape: RoundedRectangleBorder(
@@ -215,7 +215,7 @@ class _VietQuizWidgetState extends State<VietQuizWidget> {
                   child: Center(
                     child: InkWell(
                       onTap: () {
-                        TTS.speak(question.question);
+                        TTS.speak(question.getAttribute("question"));
                       },
                       child: const Icon(Icons.mic),
                     ),
@@ -231,10 +231,12 @@ class _VietQuizWidgetState extends State<VietQuizWidget> {
   }
 
   List<Widget> _buildQuiz() {
-    if (question.type == 'mcq') {
+    if (question.getAttribute("type")
+        == 'mcq') {
       return _answerList();
     }
-    if (question.type == 'speech') {
+    if (question.getAttribute("type")
+        == 'speech') {
       return [_answerSpeech()];
     }
     throw Exception("Unknown Quiz Type");
