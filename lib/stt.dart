@@ -6,7 +6,7 @@ import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 class STT {
-  static SpeechToText speech = SpeechToText();
+  static SpeechToText _speech = SpeechToText();
 
   String _currentLocaleId = '';
   List<LocaleName> _localeNames = [];
@@ -14,14 +14,37 @@ class STT {
   double minSoundLevel = 50000;
   double maxSoundLevel = -50000;
 
+  static List<void Function(String)> _handlers = [];
+
+  static void addListener(void Function(String) handler) {
+    _handlers.add(handler);
+  }
+
+  static void removeListener(void Function(String) handler) {
+    _handlers.remove(handler);
+  }
+
   final TextEditingController _pauseForController =
   TextEditingController(text: '3');
   final TextEditingController _listenForController =
   TextEditingController(text: '30');
+
+  static bool _isAvailable = false;
+
+  static bool get isAvailable => _isAvailable;
+  static SpeechToText get speech => _speech;
+
   static initSTT() async {
-    bool hasSpeed = await speech.initialize(
-      onError: (val) => print(val),
-      onStatus: (val) => print(val),
+    _isAvailable = await speech.initialize(
+      onError: (val) {
+        print(val);
+      },
+      onStatus: (String val) {
+        print(val);
+        for (var element in _handlers) {
+          element(val);
+        }
+      },
     );
   }
 

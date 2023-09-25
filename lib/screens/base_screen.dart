@@ -20,11 +20,17 @@ class _BaseScreenState extends State<BaseScreen> {
     FeaturedScreen(),
     FeaturedScreen(),
   ];
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: SizedBox(
+        width: size.width,
+        height: size.height,
+        child: Stack(
+          children: [_widgetOptions.elementAt(_selectedIndex)],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

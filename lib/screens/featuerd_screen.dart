@@ -1,10 +1,8 @@
+import 'dart:math';
+
 import 'package:edu/constants/color.dart';
-import 'package:edu/constants/size.dart';
 import 'package:edu/models/category.dart';
-import 'package:edu/screens/course_screen.dart';
-import 'package:edu/screens/details_screen.dart';
-import 'package:edu/screens/math_screen.dart';
-import 'package:edu/screens/tiengviet_screen.dart';
+import 'package:edu/screens/class_chossing_widget.dart';
 import 'package:edu/widgets/circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,14 +19,15 @@ class FeaturedScreen extends StatefulWidget {
 class _FeaturedScreenState extends State<FeaturedScreen> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    var appBarHeight = size.height / 3.5;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
-        body: Column(
-          children: const [
-            AppBar(),
-            Body(),
-          ],
+        body: const Body(),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(appBarHeight > 220 ? 220 : appBarHeight),
+          child: const AppBar(),
         ),
       ),
     );
@@ -36,12 +35,15 @@ class _FeaturedScreenState extends State<FeaturedScreen> {
 }
 
 class Body extends StatelessWidget {
-
   const Body({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
+    var ecSize = size.width / 18;
+    var saSize = size.width / 20;
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
@@ -50,7 +52,8 @@ class Body extends StatelessWidget {
             children: [
               Text(
                 "Explore Categories",
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Theme.of(context).textTheme.bodyLarge!
+                    .copyWith(fontSize: ecSize > 25 ? 25 : ecSize),
               ),
               TextButton(
                 onPressed: () {},
@@ -59,66 +62,57 @@ class Body extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium
-                      ?.copyWith(color: kPrimaryColor),
+                      ?.copyWith(
+                    color: kPrimaryColor,
+                    fontSize: saSize > 20 ? 20 : saSize
+                  ),
                 ),
               )
             ],
           ),
         ),
-        GridView.builder(
-          shrinkWrap: true,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 8,
+        Flexible(
+          child: GridView.builder(
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 8,
+            ),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: (size.width > 700 ? 3 : 2),
+              childAspectRatio: 0.8,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 24,
+            ),
+            itemBuilder: (context, index) {
+              return CategoryCard(
+                category: Categories.values[index].category,
+              );
+            },
+            itemCount: Categories.values.length,
           ),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.75,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 24,
-          ),
-          itemBuilder: (context, index) {
-            return CategoryCard(
-              category: categoryList[index],
-              position: index,
-            );
-          },
-          itemCount: categoryList.length,
-        ),
+        )
       ],
     );
   }
 }
 
-class WidgetList {
-  static List<Widget> getWidgets() {
-    return [
-      CourseScreen(),
-      VietScreen(),
-      MathScreen(),
-    ];
-  }
-}
 class CategoryCard extends StatelessWidget {
-  List<Widget> getWidgets() {
-    return WidgetList.getWidgets();
-  }
   final Category category;
-  final int position;
   const CategoryCard({
     Key? key,
     required this.category,
-    required this.position,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> widgets = getWidgets();
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => widgets[position],
+          builder: (context) => ClassChoosingWidget(category: category,),
         ),
       ),
       child: Container(
@@ -134,25 +128,49 @@ class CategoryCard extends StatelessWidget {
             ), //BoxShadow
           ],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: Image.asset(
-                category.thumbnail,
-                height: kCategoryCardImageSize,
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(category.name),
-            Text(
-              "${category.noOfCourses.toString()} courses",
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            var fontSize = constraints.maxWidth /10;
+            var padding = constraints.maxWidth * 0.05;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: ClipRect(
+                    clipBehavior: Clip.hardEdge,
+                    child: Image.asset(
+                      category.thumbnail,
+                      height: constraints.maxHeight * 3/5,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: constraints.maxHeight * 2/5,
+                  width: constraints.maxWidth,
+                  child: Padding(
+                    padding: EdgeInsets.all(padding),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(category.name,
+                          style: Theme.of(context).textTheme.bodyMedium!
+                              .copyWith(fontSize: fontSize),
+                        ),
+                        Text(
+                          "${category.noOfCourses.toString()} courses",
+                          style: Theme.of(context).textTheme.bodySmall!
+                              .copyWith(fontSize: fontSize - 3),
+                        ),
+                      ],
+                    ),
+                  )
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -166,10 +184,10 @@ class AppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
+    var appendTop = size.height/20;
     return Container(
-      padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
-      height: 200,
-      width: double.infinity,
+      padding: EdgeInsets.only(top: (min(appendTop, 50)) + 20, left: 20, right: 20, bottom: 20),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(20),
@@ -185,27 +203,40 @@ class AppBar extends StatelessWidget {
           ],
         ),
       ),
-      child: Column(
-        children: [
-          Row(
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          var titleFontSize = constraints.maxHeight / 6;
+          return Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Hello,\nGood Morning",
-                style: Theme.of(context).textTheme.titleLarge,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Hello, \nGood Morning",
+                    style: Theme.of(context).textTheme.titleLarge!
+                        .copyWith(fontSize: max(titleFontSize,23)),
+                  ),
+                  CircleButton(
+                    icon: Icons.notifications,
+                    onPressed: () {},
+                  ),
+                ],
               ),
-              CircleButton(
-                icon: Icons.notifications,
-                onPressed: () {},
-              ),
+              SizedBox(
+                height: constraints.maxHeight * 0.4,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SearchTextField(
+                    size: constraints.maxHeight / 7,
+                    labelSize: constraints.maxHeight / 9 ,
+                  ),
+                ),
+              )
             ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const SearchTextField()
-        ],
+          );
+        },
       ),
     );
   }
