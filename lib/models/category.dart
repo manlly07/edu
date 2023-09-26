@@ -17,19 +17,19 @@ enum Categories {
     id: 1,
     name: 'Học Tiếng Việt',
     noOfCourses: 55,
-    thumbnail: 'assets/icons/laptop.jpg',
+    thumbnail: 'assets/icons/word.png',
   )),
   TAPVIET(Category(
     id: 2,
     name: 'Luyện Tiếng Việt',
     noOfCourses: 20,
-    thumbnail: 'assets/icons/accounting.jpg',
+    thumbnail: 'assets/icons/tv.png',
   )),
   TOAN(Category(
     id: 3,
     name: 'Luyện Toán',
     noOfCourses: 16,
-    thumbnail: 'assets/icons/photography.jpg',
+    thumbnail: 'assets/icons/math.png',
   ));
 
   final Category category;
