@@ -25,10 +25,32 @@ class _FeaturedScreenState extends State<FeaturedScreen> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
-        body: const Body(),
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight > 220 ? 220 : appBarHeight),
-          child: const AppBar(),
+        body: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                height: size.height*0.8,
+                child: Container(
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(bgHome),
+                        fit: BoxFit.fitHeight,
+                      )
+                  ),
+                ),
+              ),
+            ),
+            Column(
+              children: [
+                SizedBox(
+                  height: min(220, appBarHeight),
+                  child: const AppBar(),
+                ),
+                const Body(),
+              ],
+            )
+          ],
         ),
       ),
     );
@@ -43,67 +65,59 @@ class Body extends StatelessWidget {
     Size size = MediaQuery.sizeOf(context);
     var ecSize = size.width / 18;
     var saSize = size.width / 20;
-    return Stack(
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset(
-          bgHome,
-          fit: BoxFit.fitHeight,
-        ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Explore Categories",
-                    style: Theme.of(context).textTheme.bodyLarge!
-                        .copyWith(fontSize: ecSize > 25 ? 25 : ecSize),
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Explore Categories",
+                style: Theme.of(context).textTheme.bodyLarge!
+                    .copyWith(fontSize: ecSize > 25 ? 25 : ecSize),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "See All",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(
+                      color: kPrimaryColor,
+                      fontSize: saSize > 20 ? 20 : saSize
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "See All",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(
-                          color: kPrimaryColor,
-                          fontSize: saSize > 20 ? 20 : saSize
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Flexible(
-              child: GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 8,
                 ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: (size.width > 700 ? 3 : 2),
-                  childAspectRatio: 0.8,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 24,
-                ),
-                itemBuilder: (context, index) {
-                  return CategoryCard(
-                    category: Categories.values[index].category,
-                  );
-                },
-                itemCount: Categories.values.length,
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
-      ]
+        Flexible(
+          child: GridView.builder(
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 8,
+            ),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: (size.width > 700 ? 3 : 2),
+              childAspectRatio: 0.8,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 24,
+            ),
+            itemBuilder: (context, index) {
+              return CategoryCard(
+                category: Categories.values[index].category,
+              );
+            },
+            itemCount: Categories.values.length,
+          ),
+        )
+      ],
     );
   }
 }
