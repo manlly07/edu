@@ -213,8 +213,8 @@ class Course {
           SpeakingLesson(thumbnail: 'assets/icons/h/he.json', word: 'Mùa hè'),
           SpeakingLesson(thumbnail: 'assets/icons/h/hat.json', word: 'Ca hát'),
           SpeakingLesson(thumbnail: 'assets/icons/h/anhhung.json', word: 'Anh hùng'),
-          SpeakingLesson(thumbnail: 'assets/icons/h/h.jpg', word: 'h'),
-          SpeakingLesson(thumbnail: 'assets/icons/h/H(1).jpg', word: 'H')
+          SpeakingLesson(thumbnail: 'assets/icons/h/h.jpg', word: 'hờ'),
+          SpeakingLesson(thumbnail: 'assets/icons/h/H(1).jpg', word: 'Hờ')
         ]
     ),
     Course(
@@ -345,7 +345,7 @@ class Course {
         categoryId: 1,
         lessons: [
           SpeakingLesson(thumbnail: 'assets/icons/p/p.png', word: 'Đèn pin'),
-          SpeakingLesson(thumbnail: 'assets/icons/p/phonghoc.avif', word: 'Phòng học'),
+          SpeakingLesson(thumbnail: 'assets/icons/p/phonghoc.jpg', word: 'Phòng học'),
           SpeakingLesson(thumbnail: 'assets/icons/p/phongvien.json', word: 'Phóng viên'),
           SpeakingLesson(thumbnail: 'assets/icons/p/phunu.json', word: 'Phụ nữ'),
           SpeakingLesson(thumbnail: 'assets/icons/p/p.jpg', word: 'p'),
@@ -452,7 +452,7 @@ class Course {
           SpeakingLesson(thumbnail: 'assets/icons/v/v.png', word: 'Con vịt'),
           SpeakingLesson(thumbnail: 'assets/icons/a/vang.json', word: 'Màu vàng'),
           SpeakingLesson(thumbnail: 'assets/icons/v/quavai.json', word: 'Quả vải'),
-          SpeakingLesson(thumbnail: 'assets/icons/v/vetranh.png', word: 'Vẽ tranh'),
+          SpeakingLesson(thumbnail: 'assets/icons/v/vetranh.json', word: 'Vẽ tranh'),
           SpeakingLesson(thumbnail: 'assets/icons/v/v.jpg', word: 'v'),
           SpeakingLesson(thumbnail: 'assets/icons/v/V(1).jpg', word: 'V')
         ]

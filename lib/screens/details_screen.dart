@@ -207,69 +207,6 @@ class LessonContainer extends StatelessWidget {
 }
 
 
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//
-// class PlayList extends StatelessWidget {
-//   const PlayList({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Expanded(
-//       // child: ListView.separated(
-//         separatorBuilder: (_, __) {
-//           return const SizedBox(
-//             height: 20,
-//           );
-//         },
-//         padding: const EdgeInsets.only(top: 20, bottom: 40),
-//         shrinkWrap: true,
-//         // itemCount: lessonList.length,
-//         itemBuilder: (_, index) {
-//           // return LessonCard(lesson: lessonList[index]);
-//         },
-//       ),
-//     );
-//   }
-// }
-
 class Description extends StatelessWidget {
   const Description({Key? key}) : super(key: key);
 
@@ -283,110 +220,55 @@ class Description extends StatelessWidget {
   }
 }
 
-// class CustomTabView extends StatefulWidget {
-//   final Function(int) changeTab;
-//   final int index;
-//   const CustomTabView({Key? key, required this.changeTab, required this.index})
-//       : super(key: key);
+// class EnrollBottomSheet extends StatefulWidget {
+//   const EnrollBottomSheet({Key? key}) : super(key: key);
 //
 //   @override
-//   // State<CustomTabView> createState() => _CustomTabViewState();
+//   _EnrollBottomSheetState createState() => _EnrollBottomSheetState();
 // }
-
-// class _CustomTabViewState extends State<CustomTabView> {
-//   final List<String> _tags = ["Playlist (22)", "Description"];
 //
-//   Widget _buildTags(int index) {
-//     return GestureDetector(
-//       onTap: () {
-//         widget.changeTab(index);
-//       },
-//       child: Container(
-//         padding: EdgeInsets.symmetric(
-//             horizontal: MediaQuery.of(context).size.width * .08, vertical: 15),
-//         decoration: BoxDecoration(
-//           color: widget.index == index ? kPrimaryColor : null,
-//           borderRadius: BorderRadius.circular(10),
-//         ),
-//         child: Text(
-//           _tags[index],
-//           style: TextStyle(
-//             color: widget.index != index ? Colors.black : Colors.white,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-//
+// class _EnrollBottomSheetState extends State<EnrollBottomSheet> {
 //   @override
 //   Widget build(BuildContext context) {
-//     return Container(
-//       padding: const EdgeInsets.all(10),
-//       width: double.infinity,
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(12),
-//         color: Colors.grey.shade200,
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(
+//         horizontal: 30.0,
 //       ),
 //       child: Row(
-//         children: _tags
-//             .asMap()
-//             .entries
-//             .map((MapEntry map) => _buildTags(map.key))
-//             .toList(),
+//         children: [
+//           CustomIconButton(
+//             onTap: () {},
+//             height: 45,
+//             width: 45,
+//             child: const Icon(
+//               Icons.favorite,
+//               color: Colors.pink,
+//               size: 30,
+//             ),
+//           ),
+//           const SizedBox(
+//             width: 20,
+//           ),
+//           Expanded(
+//             child: CustomIconButton(
+//               onTap: () {},
+//               color: kPrimaryColor,
+//               height: 45,
+//               width: 45,
+//               child: const Text(
+//                 "Enroll Now",
+//                 style: TextStyle(
+//                   color: Colors.white,
+//                   fontSize: 18,
+//                 ),
+//               ),
+//             ),
+//           )
+//         ],
 //       ),
 //     );
 //   }
 // }
-
-class EnrollBottomSheet extends StatefulWidget {
-  const EnrollBottomSheet({Key? key}) : super(key: key);
-
-  @override
-  _EnrollBottomSheetState createState() => _EnrollBottomSheetState();
-}
-
-class _EnrollBottomSheetState extends State<EnrollBottomSheet> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 30.0,
-      ),
-      child: Row(
-        children: [
-          CustomIconButton(
-            onTap: () {},
-            height: 45,
-            width: 45,
-            child: const Icon(
-              Icons.favorite,
-              color: Colors.pink,
-              size: 30,
-            ),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: CustomIconButton(
-              onTap: () {},
-              color: kPrimaryColor,
-              height: 45,
-              width: 45,
-              child: const Text(
-                "Enroll Now",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
 
 class CustomIconButton extends StatelessWidget {
   final Widget child;

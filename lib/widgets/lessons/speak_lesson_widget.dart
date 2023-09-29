@@ -28,6 +28,7 @@ class _SpeakLessonWidgetState extends State<SpeakLessonWidget>
 
   final ValueNotifier<String> text = ValueNotifier("Phát âm nào !");
   final ValueNotifier<bool> _isListening = ValueNotifier(false);
+  final ValueNotifier<String> redWord = ValueNotifier("");
 
   @override
   void initState() {
@@ -47,6 +48,8 @@ class _SpeakLessonWidgetState extends State<SpeakLessonWidget>
     _checking.value = false;
     lesson = widget.lesson;
     STT.addListener(_statusListener);
+
+    redWord.value = lesson.thumbnail.replaceAll("assets/icons/", "")[0];
   }
 
   @override
@@ -186,4 +189,16 @@ class SpeakingLesson extends Lesson {
 
   String get word => getAttribute("word");
   String get thumbnail => getAttribute("thumbnail");
+}
+
+List<TextSpan> _buildTextSpans(String word) {
+  List<TextSpan> textSpans = [];
+
+  for (int i = 0; i < word.length; i++) {
+    String character = word[i];
+    TextStyle? textStyle = character.toLowerCase() == 'o' ? TextStyle(color: Colors.red) : null;
+    textSpans.add(TextSpan(text: character, style: textStyle));
+  }
+
+  return textSpans;
 }
