@@ -19,18 +19,20 @@ class VietQuestion extends Lesson {
 
 Random random = Random(DateTime.timestamp().microsecond);
 List<int> array = [];
-List<VietQuestion> generateRandomVietQuestions(int i) {
+List<VietQuestion> generateRandomVietQuestions(int i, int min, int max) {
   return List<VietQuestion>.generate(i, (index) {
-    return generateRandomVietQuestion();
+    return generateRandomVietQuestion(min, max);
   });
 }
 
-VietQuestion generateRandomVietQuestion() {
+VietQuestion generateRandomVietQuestion(int min, int max) {
   VietQuestion questions;
   int _length = listquiz.length;
-  int randomNumber = random.nextInt(_length) + 1;
+  int randomNumber = min + random.nextInt(max - min + 1);
   while(array.contains(randomNumber)) {
-    randomNumber = random.nextInt(_length) + 1;
+    if(randomNumber >= min && randomNumber <= max){
+      randomNumber = min + random.nextInt(max - min + 1);
+    }
   }
   array.add(randomNumber);
 

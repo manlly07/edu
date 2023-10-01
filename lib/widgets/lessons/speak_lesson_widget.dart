@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:edu/constants/color.dart';
 import 'package:edu/models/lesson.dart';
 import 'package:edu/stt.dart';
@@ -50,6 +52,7 @@ class _SpeakLessonWidgetState extends State<SpeakLessonWidget>
     STT.addListener(_statusListener);
 
     redWord.value = lesson.thumbnail.replaceAll("assets/icons/", "")[0];
+
   }
 
   @override
@@ -117,10 +120,16 @@ class _SpeakLessonWidgetState extends State<SpeakLessonWidget>
         Align(
           heightFactor: 2,
           alignment: Alignment.topCenter,
-          child: Text(
-            lesson.word,
-            style: Theme.of(context).textTheme.bodyLarge,
-            // style: ,
+          // child: Text(
+          //   lesson.word,
+          //   style: Theme.of(context).textTheme.bodyLarge,
+          //   // style: ,
+          // ),
+          child: RichText(
+            text: TextSpan(
+              style: Theme.of(context).textTheme.bodyLarge,
+              children: _buildTextSpans(lesson.word, redWord.value),
+            ),
           ),
         ),
         Container(
@@ -143,7 +152,7 @@ class _SpeakLessonWidgetState extends State<SpeakLessonWidget>
           child: ValueListenableBuilder(
             valueListenable: text,
             builder: (BuildContext context, String value, Widget? child) {
-              return Center(child: Text(value),);
+              return Center(child: Text(value));
             },
           ),
         ),
@@ -191,14 +200,94 @@ class SpeakingLesson extends Lesson {
   String get thumbnail => getAttribute("thumbnail");
 }
 
-List<TextSpan> _buildTextSpans(String word) {
-  List<TextSpan> textSpans = [];
+List<InlineSpan> _buildTextSpans(String word, String temp) {
+  List<InlineSpan> textSpans = [];
+  AsciiEncoder encoder = AsciiEncoder();
+
+  String normalizedTemp = removeDiacritics(temp.toLowerCase());
 
   for (int i = 0; i < word.length; i++) {
     String character = word[i];
-    TextStyle? textStyle = character.toLowerCase() == 'o' ? TextStyle(color: Colors.red) : null;
+    String normalizedCharacter = removeDiacritics(character.toLowerCase());
+    String encodedCharacter = String.fromCharCodes(encoder.convert(normalizedCharacter));
+
+    TextStyle? textStyle = encodedCharacter == normalizedTemp ? TextStyle(color: Colors.red) : null;
     textSpans.add(TextSpan(text: character, style: textStyle));
   }
 
   return textSpans;
+}
+
+String removeDiacritics(String word) {
+  final Map<String, String> diacriticsMap = {
+    'á': 'a',
+    'à': 'a',
+    'ả': 'a',
+    'ã': 'a',
+    'ạ': 'a',
+    'â': 'a',
+    'ấ': 'a',
+    'ầ': 'a',
+    'ẩ': 'a',
+    'ẫ': 'a',
+    'ậ': 'a',
+    'ă': 'a',
+    'ắ': 'a',
+    'ằ': 'a',
+    'ẳ': 'a',
+    'ẵ': 'a',
+    'ặ': 'a',
+    'è': 'e',
+    'é': 'e',
+    'ẻ': 'e',
+    'ẽ': 'e',
+    'ẹ': 'e',
+    'ê': 'e',
+    'ế': 'e',
+    'ề': 'e',
+    'ể': 'e',
+    'ễ': 'e',
+    'ệ': 'e',
+    'í': 'i',
+    'ì': 'i',
+    'ỉ': 'i',
+    'ĩ': 'i',
+    'ị': 'i',
+    'ó': 'o',
+    'ò': 'o',
+    'ỏ': 'o',
+    'õ': 'o',
+    'ọ': 'o',
+    'ô': 'o',
+    'ố': 'o',
+    'ồ': 'o',
+    'ổ': 'o',
+    'ỗ': 'o',
+    'ộ': 'o',
+    'ơ': 'o',
+    'ớ': 'o',
+    'ờ': 'o',
+    'ở': 'o',
+    'ỡ': 'o',
+    'ợ': 'o',
+    'ú': 'u',
+    'ù': 'u',
+    'ủ': 'u',
+    'ũ': 'u',
+    'ụ': 'u',
+    'ư': 'u',
+    'ứ': 'u',
+    'ừ': 'u',
+    'ử': 'u',
+    'ữ': 'u',
+    'ự': 'u',
+    'ý': 'y',
+    'ỳ': 'y',
+    'ỷ': 'y',
+    'ỹ': 'y',
+    'ỵ': 'y',
+    'đ': 'd',
+  };
+
+  return word.split('').map((char) => diacriticsMap[char] ?? char).join();
 }

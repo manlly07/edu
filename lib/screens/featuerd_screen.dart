@@ -30,12 +30,12 @@ class _FeaturedScreenState extends State<FeaturedScreen> {
             Align(
               alignment: Alignment.bottomCenter,
               child: SizedBox(
-                height: size.height*0.8,
+                height: size.height,
                 child: Container(
                   decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(bgHome),
-                        fit: BoxFit.fitHeight,
+                        fit: BoxFit.fill,
                       )
                   ),
                 ),
@@ -74,14 +74,14 @@ class Body extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Explore Categories",
+                "Danh mục bài học",
                 style: Theme.of(context).textTheme.bodyLarge!
                     .copyWith(fontSize: ecSize > 25 ? 25 : ecSize),
               ),
               TextButton(
                 onPressed: () {},
                 child: Text(
-                  "See All",
+                  "Xem tất cả",
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium
@@ -216,15 +216,15 @@ class AppBar extends StatelessWidget {
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
         ),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          stops: [0.1, 0.5],
-          colors: [
-            Color(0xff81FBB8),
-            Color(0xff28C76F),
-          ],
-        ),
+        // gradient: LinearGradient(
+        //   begin: Alignment.topLeft,
+        //   end: Alignment.bottomRight,
+        //   stops: [0.1, 0.5],
+        //   colors: [
+        //     Color(0xff81FBB8),
+        //     Color(0xff28C76F),
+        //   ],
+        // ),
       ),
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -237,13 +237,9 @@ class AppBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Hello, \nGood Morning",
+                    "Xin chào các bạn nhỏ, \n Cùng học với E-KIZD nhé!",
                     style: Theme.of(context).textTheme.titleLarge!
-                        .copyWith(fontSize: max(titleFontSize,23)),
-                  ),
-                  CircleButton(
-                    icon: Icons.notifications,
-                    onPressed: () {},
+                        .copyWith(fontSize: max(titleFontSize,22), color: Colors.black),
                   ),
                 ],
               ),

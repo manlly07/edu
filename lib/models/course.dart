@@ -502,12 +502,36 @@ class Course {
     Course(
         lop: Class.MOT,
         category: Categories.TAPVIET.category,
-        name: "Kiểm tra",
-        thumbnail: "assets/icons/a/a.riv",
+        name: "Tìm từ",
+        thumbnail: "assets/icons/word.png",
         categoryId: 2,
         lessons: [
           QuizAttempt(),
-          ...generateRandomVietQuestions(10),
+          ...generateRandomVietQuestions(10, 1, 29),
+          QuizResult()
+        ]
+    ),
+    Course(
+        lop: Class.MOT,
+        category: Categories.TAPVIET.category,
+        name: "Gia đình",
+        thumbnail: "assets/icons/giadinh.png",
+        categoryId: 2,
+        lessons: [
+          QuizAttempt(),
+          ...generateRandomVietQuestions(10, 30, 39),
+          QuizResult()
+        ]
+    ),
+    Course(
+        lop: Class.MOT,
+        category: Categories.TAPVIET.category,
+        name: "Món ăn",
+        thumbnail: "assets/icons/thucvat.png",
+        categoryId: 2,
+        lessons: [
+          QuizAttempt(),
+          ...generateRandomVietQuestions(10, 40, 49),
           QuizResult()
         ]
     ),

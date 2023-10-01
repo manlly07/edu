@@ -22,6 +22,7 @@ class _ClassChossingWidgetState extends State<ClassChoosingWidget> {
   }
 
   void onPressed(Class lop) {
+    print("hello");
     List<Course> courses = getCourses(lop);
     Navigator.push(context, MaterialPageRoute(
     builder: (context) => CourseScreen(courses: courses),

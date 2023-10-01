@@ -50,7 +50,8 @@ class _VietQuizWidgetState extends State<VietQuizWidget> {
   void statusListener(String status) {
     if(status == "done") {
       bool result;
-      if (text.contains(question.getAttribute("answer").toLowerCase())) {
+      print(text);
+      if (text.toLowerCase().contains(question.getAttribute("answer").toLowerCase())) {
         showToastMessage("Chính xãc", true);
         result = true;
       }else {
