@@ -239,7 +239,7 @@ class AppBar extends StatelessWidget {
                   Text(
                     "Xin chào các bạn nhỏ, \n Cùng học với E-KIZD nhé!",
                     style: Theme.of(context).textTheme.titleLarge!
-                        .copyWith(fontSize: max(titleFontSize,22), color: Colors.black),
+                        .copyWith(fontSize: max(titleFontSize,22), color: Colors.deepPurpleAccent),
                   ),
                 ],
               ),

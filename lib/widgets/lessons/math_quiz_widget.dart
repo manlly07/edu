@@ -61,7 +61,10 @@ class _MathQuizWidgetState extends State<MathQuizWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(question.question),
+                      if(question.question.length == 5)
+                        _questionButton(question.question),
+                      if(question.question.length != 5)
+                        Text(question.question),
                     ],
                   ),
                 ),
@@ -77,6 +80,66 @@ class _MathQuizWidgetState extends State<MathQuizWidget> {
     return question.options.map(
           (e) => _answerButton(e),
     ).toList();
+  }
+
+  Widget _questionButton(String word) {
+    return(
+      Row(
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            // color: Colors.lightBlueAccent,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              border: Border.all(
+                width: 2,
+                // color: Colors.brown,
+              )
+            ),
+            child: Center(
+              child: Text(word[0], style: TextStyle(fontSize: 20),),
+            ),
+          ),
+          SizedBox(
+            width: 12,
+          ),
+          Container(
+            width: 48,
+            height: 48,
+            // color: Colors.lightBlueAccent,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                border: Border.all(
+                  width: 2,
+                  // color: Colors.brown,
+                )
+            ),
+            child: Center(
+              child: Text("?", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold, fontSize: 24),),
+            ),
+          ),
+          SizedBox(
+            width: 12,
+          ),
+          Container(
+            width: 48,
+            height: 48,
+            // color: Colors.lightBlueAccent,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                border: Border.all(
+                  width: 2,
+                  // color: Colors.brown,
+                )
+            ),
+            child: Center(
+              child: Text(word[4], style: TextStyle(fontSize: 20),),
+            ),
+          ),
+        ],
+      )
+    );
   }
 
   Widget _answerButton(e) {

@@ -491,16 +491,56 @@ class Course {
     Course(
         lop: Class.MOT,
         category: Categories.DEMSO.category,
-        name: 'Y',
-        thumbnail: 'assets/icons/y/y.png',
+        name: 'Đếm số',
+        thumbnail: 'assets/icons/demso.png',
         categoryId: 1,
         lessons: [
-          SpeakingLesson(thumbnail: 'assets/icons/y/y.png', word: 'Y tá'),
-          SpeakingLesson(thumbnail: 'assets/icons/y/chimyen.png', word: 'Chim yến'),
-          SpeakingLesson(thumbnail: 'assets/icons/y/yenngua.png', word: 'Yên ngựa'),
-          SpeakingLesson(thumbnail: 'assets/icons/y/yeuthuong.json', word: 'Yêu thương'),
-          SpeakingLesson(thumbnail: 'assets/icons/y/y.jpg', word: 'y'),
-          SpeakingLesson(thumbnail: 'assets/icons/y/Y(1).jpg', word: 'Y')
+          SpeakingLesson(thumbnail: 'assets/icons/0.png', word: 'Số 0'),
+          SpeakingLesson(thumbnail: 'assets/icons/1.png', word: 'Số 1'),
+          SpeakingLesson(thumbnail: 'assets/icons/2.png', word: 'Số 2'),
+          SpeakingLesson(thumbnail: 'assets/icons/3.png', word: 'Số 3'),
+          SpeakingLesson(thumbnail: 'assets/icons/4.png', word: 'Số 4'),
+          SpeakingLesson(thumbnail: 'assets/icons/5.png', word: 'Số 5'),
+          SpeakingLesson(thumbnail: 'assets/icons/6.png', word: 'Số 6'),
+          SpeakingLesson(thumbnail: 'assets/icons/7.png', word: 'Số 7'),
+          SpeakingLesson(thumbnail: 'assets/icons/8.png', word: 'Số 8'),
+          SpeakingLesson(thumbnail: 'assets/icons/9.png', word: 'Số 9'),
+          SpeakingLesson(thumbnail: 'assets/icons/10.png', word: 'Số 10'),
+        ]
+    ),
+    Course(
+        lop: Class.MOT,
+        category: Categories.DEMSO.category,
+        name: 'Hình vẽ',
+        thumbnail: 'assets/icons/hinhhoc.png',
+        categoryId: 1,
+        lessons: [
+          SpeakingLesson(thumbnail: 'assets/icons/sq.png', word: 'Hình vuông'),
+          SpeakingLesson(thumbnail: 'assets/icons/rec.png', word: 'Hình chữ nhật'),
+          SpeakingLesson(thumbnail: 'assets/icons/cle.png', word: 'Hình tròn'),
+          SpeakingLesson(thumbnail: 'assets/icons/qq6.png', word: 'Hình lục giác'),
+          SpeakingLesson(thumbnail: 'assets/icons/qq5.png', word: 'Hình lục giác'),
+          SpeakingLesson(thumbnail: 'assets/icons/qq3.png', word: 'Hình tam giác'),
+          SpeakingLesson(thumbnail: 'assets/icons/qq4.png', word: 'Hình tứ giác'),
+        ]
+    ),
+
+    Course(
+        lop: Class.MOT,
+        category: Categories.DEMSO.category,
+        name: 'So sánh',
+        thumbnail: 'assets/icons/compare.png',
+        categoryId: 1,
+        lessons: [
+          SpeakingLesson(thumbnail: 'assets/icons/gr.png', word: 'Dấu lớn'),
+          SpeakingLesson(thumbnail: 'assets/icons/lt.png', word: 'Dấu bé'),
+          SpeakingLesson(thumbnail: 'assets/icons/eq.png', word: 'Dấu bằng'),
+          SpeakingLesson(thumbnail: 'assets/icons/zz1.png', word: '8 lớn hơn 3'),
+          SpeakingLesson(thumbnail: 'assets/icons/zz2.png', word: '5 bằng 5'),
+          SpeakingLesson(thumbnail: 'assets/icons/zz3.png', word: '7 lớn hơn 2'),
+          SpeakingLesson(thumbnail: 'assets/icons/zz4.png', word: '2 bé hơn 5'),
+          SpeakingLesson(thumbnail: 'assets/icons/zz5.png', word: '4 lớn hơn 1'),
+          SpeakingLesson(thumbnail: 'assets/icons/zz6.png', word: '3 bằng 3'),
         ]
     ),
 
@@ -543,15 +583,27 @@ class Course {
     Course(
         lop: Class.MOT,
         category: Categories.TOAN.category,
-        name: "Kiểm tra",
-        thumbnail: "assets/icons/a/a.riv",
+        name: "Tính toán",
+        thumbnail: "assets/icons/math.png",
         categoryId: 4,
         lessons: [
           QuizAttempt(),
           ...generateRandomMathQuestions(10),
           QuizResult()
         ]
-    )
+    ),
+    Course(
+        lop: Class.MOT,
+        category: Categories.TOAN.category,
+        name: "So sánh",
+        thumbnail: "assets/icons/compare.png",
+        categoryId: 4,
+        lessons: [
+          QuizAttempt(),
+          ...generateRandomCompareQuestions(10),
+          QuizResult()
+        ]
+    ),
   ];
 
   static List<Course> getCourseOf(Category category, Class clss) {

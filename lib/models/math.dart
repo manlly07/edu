@@ -23,6 +23,12 @@ List<MathQuestion> generateRandomMathQuestions(int i) {
   });
 }
 
+List<MathQuestion> generateRandomCompareQuestions(int i) {
+  return List<MathQuestion>.generate(i, (index) {
+    return generateRandomCompareQuestion();
+  });
+}
+
 MathQuestion generateRandomMathQuestion() {
   MathQuestion questions;
 
@@ -66,4 +72,24 @@ MathQuestion generateRandomMathQuestion() {
   questions = question;
 
   return questions;
+}
+
+MathQuestion generateRandomCompareQuestion() {
+  int number1 = random.nextInt(10) + 1;
+  int number2 = random.nextInt(10) + 1;
+  String operator = '=';
+  if (number1 > number2) {
+    operator = '>';
+  }
+  if (number1 < number2) {
+    operator = '<';
+  }
+  List<String> options = ['>', '<', '='];
+  options.shuffle();
+  MathQuestion question = MathQuestion(
+    question: '$number1 ? $number2',
+    answer: operator.toString(),
+    options: options,
+  );
+  return question;
 }

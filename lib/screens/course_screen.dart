@@ -124,7 +124,7 @@ class CourseContainer extends StatelessWidget {
         ),
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-            double fontSize = (constraints.maxHeight + constraints.maxWidth) / 10;
+            double fontSize = (constraints.maxHeight + constraints.maxWidth) / 12;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -157,6 +157,9 @@ class CourseContainer extends StatelessWidget {
 }
 
 Widget getThumbNail(String thumbnail ,BoxConstraints constraints, String text) {
+  if(thumbnail == "") {
+    return SizedBox();
+  }
   if (text == "") {
     if (thumbnail.contains("riv")) {
       return Align(

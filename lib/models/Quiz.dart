@@ -210,121 +210,121 @@ List<Lesson> listquiz = [
   Quiz(
       question: 'Cùng mình đánh vần nhé bờ ô bô sắc bố',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/bo.png'],
       answer: 'bờ ô bô sắc bố'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé mờ e me nặng mẹ',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/me.png'],
       answer: 'mờ e me nặng mẹ'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé ô ngờ ông',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/ong.png'],
       answer: 'ô ngờ ông'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé bờ a ba huyền bà',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/ba.png'],
       answer: 'bờ a ba huyền bà'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé a nhờ anh',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/anh.png'],
       answer: 'a nhờ anh'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé chờ i chi nặng chị',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/chi.png'],
       answer: 'chờ i chi nặng chị'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé ô cờ ô cô',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/co.png'],
       answer: 'ô cờ ô cô'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé dờ i di huyền dì',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/di.png'],
       answer: 'd i j huyền dì'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé chờ u chu sắc chú',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/chu.png'],
       answer: 'chờ u chu sắc chú'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé cờ âu câu nặng cậu',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/bac.png'],
       answer: 'cờ âu câu nặng cậu'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé lờ a la sắc lá',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/la.png'],
       answer: 'lờ a la sắc lá'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé lờ ác lác nặng lạc',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/lac.png'],
       answer: 'lờ ác lác nặng lạc'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé hờ oa hoa',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/hoa.png'],
       answer: 'hờ oa hoa'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé chờ e che huyền chè',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/che.png'],
       answer: 'chờ e che huyền chè'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé cờ ây cây',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/cay.png'],
       answer: 'cờ ây cây'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé nờ âm nâm sắc nấm',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/nam.png'],
       answer: 'nờ âm nâm sắc nấm'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé cờ o co hỏi cỏ',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/cor.png'],
       answer: 'c o co hỏi cỏ'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé mờ ăng măng',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/mang.png'],
       answer: 'mờ ăng măng'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé lờ ua lua sắc lúa',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/lua.png'],
       answer: 'lờ ua lua sắc lúa'
   ),
   Quiz(
       question: 'Cùng mình đánh vần nhé đờ ao đao huyền đào',
       type: 'speech',
-      options: [''],
+      options: ['assets/icons/dao.png'],
       answer: 'đờ ao đao huyền đào'
   ),
   QuizResult()

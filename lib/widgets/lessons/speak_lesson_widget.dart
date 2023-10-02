@@ -205,7 +205,9 @@ List<InlineSpan> _buildTextSpans(String word, String temp) {
   AsciiEncoder encoder = AsciiEncoder();
 
   String normalizedTemp = removeDiacritics(temp.toLowerCase());
-
+  int? number1;
+  int? number2;
+  
   for (int i = 0; i < word.length; i++) {
     String character = word[i];
     String normalizedCharacter = removeDiacritics(character.toLowerCase());

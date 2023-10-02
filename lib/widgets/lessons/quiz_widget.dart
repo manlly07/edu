@@ -6,6 +6,7 @@ import 'package:edu/constants/color.dart';
 import 'package:edu/models/Quiz.dart';
 import 'package:edu/models/lesson.dart';
 import 'package:edu/models/viet.dart';
+import 'package:edu/screens/course_screen.dart';
 import 'package:edu/stt.dart';
 import 'package:edu/tts.dart';
 import 'package:edu/widgets/lessons/lesson_widget.dart';
@@ -161,11 +162,14 @@ class _VietQuizWidgetState extends State<VietQuizWidget> {
   }
 
   Widget _answerSpeech() {
+    Size size = MediaQuery.sizeOf(context);
+    BoxConstraints constraints1 = BoxConstraints(maxWidth: size.width, maxHeight: size.height *3/5);
     return Expanded(
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          getThumbNail(op[0], constraints1, ""),
           GestureDetector(
             onTap: () {
               _listen();
