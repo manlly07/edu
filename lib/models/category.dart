@@ -25,8 +25,9 @@ enum Categories {
     noOfCourses: 20,
     thumbnail: 'assets/icons/tv.png',
   )),
+  DEMSO(Category(id: 3, name: 'Đếm số', noOfCourses: 10, thumbnail: 'assets/icons/demso.png')),
   TOAN(Category(
-    id: 3,
+    id: 4,
     name: 'Luyện Toán',
     noOfCourses: 16,
     thumbnail: 'assets/icons/math.png',

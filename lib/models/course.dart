@@ -487,18 +487,23 @@ class Course {
           SpeakingLesson(thumbnail: 'assets/icons/y/Y(1).jpg', word: 'Y')
         ]
     ),
-    // Course(
-    //     lop: Class.MOT,
-    //     category: Categories.TAPVIET.category,
-    //     name: 'A',
-    //     thumbnail: "assets/icons/a/a.riv",
-    //     // thumbnail: "assets/icons/a.png",
-    //     categoryId: 2,
-    //     lessons: [
-    //       SpeakingLesson(thumbnail: "assets/icons/a/a.riv", word: "Con cá"),
-    //       SpeakingLesson(thumbnail: "assets/icons/a/a.riv", word: "Con cá"),
-    //     ]
-    // ),
+
+    Course(
+        lop: Class.MOT,
+        category: Categories.DEMSO.category,
+        name: 'Y',
+        thumbnail: 'assets/icons/y/y.png',
+        categoryId: 1,
+        lessons: [
+          SpeakingLesson(thumbnail: 'assets/icons/y/y.png', word: 'Y tá'),
+          SpeakingLesson(thumbnail: 'assets/icons/y/chimyen.png', word: 'Chim yến'),
+          SpeakingLesson(thumbnail: 'assets/icons/y/yenngua.png', word: 'Yên ngựa'),
+          SpeakingLesson(thumbnail: 'assets/icons/y/yeuthuong.json', word: 'Yêu thương'),
+          SpeakingLesson(thumbnail: 'assets/icons/y/y.jpg', word: 'y'),
+          SpeakingLesson(thumbnail: 'assets/icons/y/Y(1).jpg', word: 'Y')
+        ]
+    ),
+
     Course(
         lop: Class.MOT,
         category: Categories.TAPVIET.category,
