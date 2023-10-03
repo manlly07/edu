@@ -8,17 +8,18 @@ import 'package:lottie/lottie.dart';
 import 'package:rive/rive.dart';
 
 class CourseScreen extends StatefulWidget {
+  final String title;
   final List<Course> courses;
 
-  const CourseScreen({Key? key, required this.courses}) : super(key: key);
+  const CourseScreen({Key? key, required this.courses, required this.title}) : super(key: key);
 
   @override
   _CourseScreenState createState() => _CourseScreenState();
 }
 
 class _CourseScreenState extends State<CourseScreen> {
-
   List<Course> get courses => widget.courses;
+  String get title => widget.title;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class _CourseScreenState extends State<CourseScreen> {
                     children: [
                       Align(
                         child: Text(
-                          'Tiếng Việt',
+                          title,
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                       ),
